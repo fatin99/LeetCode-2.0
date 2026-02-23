@@ -4,7 +4,7 @@ from collections import Counter
 class Solution:
     # O(nlogn): count the frequency of each number and then sort the array 
     # based on each element’s frequency. After that, select the top k
-    # Somehow this performs faster??? 
+    # Somehow this performs faster, probably because python's inbuilt sort is veryvery fast
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         numCount = Counter(nums)
         sortedNumCount = sorted(numCount.items(), key=lambda item: item[1], reverse=True)
@@ -17,7 +17,7 @@ class Solution:
         return topK
     
     #Bucket Sort (O(n))
-   def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         bucket = [[] for _ in range(len(nums) + 1)]
         numCount = Counter(nums)
         for num, count in numCount.items():
