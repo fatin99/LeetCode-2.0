@@ -26,22 +26,39 @@ class Solution:
         
     #     return result
     
+    #Solution without division
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        prefixProduct = []
-        suffixProduct = []
+        prefixProduct = [0] * len(nums)
+        suffixProduct = [0] * len(nums)
         prefixNum = 1
         suffixNum = 1
         for i in range(0, len(nums)):
-            prefixNum *= nums[i]
-            prefixProduct.append(prefixNum)
-            suffixNum *= nums[-(i + 1)]
-            suffixProduct.append(suffixNum)
+            prefixIndex = i
+            prefixNum *= nums[prefixIndex]
+            prefixProduct[prefixIndex] = prefixNum
+            suffixIndex = len(nums)-1-i
+            suffixNum *= nums[suffixIndex]
+            suffixProduct[suffixIndex] = suffixNum
 
         result = [suffixProduct[1]]
         for i in range(1, len(nums) - 1):
             product = prefixProduct[i - 1] * suffixProduct[i + 1]
             result.append(product)
-        result.append(prefixProduct[-1])
+        result.append(prefixProduct[-2])
+        return result
+    
+    # Solution using O(1) space
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+        n = len(nums)
+        result = [1] * n
+        prefix = 1
+        for i in range(n):
+            result[i] = prefix
+            prefix *= nums[i]
+        suffix = 1
+        for i in range(n - 1, -1, -1):
+            result[i] *= suffix
+            suffix *= nums[i]
         return result
 
-print(Solution().productExceptSelf([1,2,3,4]))
+print(Solution().productExceptSelf([1,2,4,6]))
