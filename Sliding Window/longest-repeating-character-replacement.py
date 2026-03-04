@@ -8,12 +8,7 @@ class Solution:
         char_count = {}
         for end in range(len(s)):
             # curr_str = s[start:end+1]
-            curr_char = s[end]
-            if curr_char in char_count:
-                char_count[curr_char] += 1
-            else:
-                char_count[curr_char] = 1
-
+            char_count[s[end]] = char_count.get(s[end], 0) + 1
             max_char = max(char_count.values()) #this is O(26) because s consists of only uppercase English letters.
             curr_window = end - start + 1
             
