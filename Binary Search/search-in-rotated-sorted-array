@@ -1,0 +1,79 @@
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        start = 0
+        end = len(nums) - 1
+        if nums[start] < nums[end]:
+            return start
+        while start < end:
+            i = int((start+end) / 2)
+            curr = nums[i]
+            if curr < nums[i-1]:
+                return i
+            left = nums[start]
+            right = nums[end]
+            if curr >= left and curr >= right:
+                start = i + 1
+            else:
+                end = i
+        if end == len(nums) - 1:
+            return end
+
+    def binarySearch(self, nums: List[int], target: int) -> int:
+        start = 0
+        end = len(nums) - 1
+        if not nums:
+            return -1
+        if nums[start] == target:
+            return start
+        if nums[end] == target:
+            return end
+        while start < end:
+            index = int((start + end) / 2)
+            if nums[index] > target:
+                end = index
+            if nums[index] < target:
+                start = index + 1
+            if nums[index] == target:
+                return index
+        return -1
+    
+    # Binary Search with min as pivot
+    def search(self, nums: List[int], target: int) -> int:
+        minIndex = self.findMin(nums)
+        if nums[minIndex] == target:
+            return minIndex
+        start = 0
+        if nums[start] == target:
+            return start
+        end = len(nums) - 1
+        if nums[end] == target:
+            return end
+        # This needs 2 passes
+        # leftSearch = self.binarySearch(nums[start:minIndex], target)
+        # if leftSearch >= 0:
+        #     return leftSearch 
+        # rightSearch = self.binarySearch(nums[minIndex+1:end], target)
+        # if rightSearch >= 0:
+        #     return rightSearch + minIndex + 1
+
+        #This needs one pass
+        if target > nums[minIndex] and target < nums[end]:
+            start = minIndex
+        else:
+            end = minIndex
+        index = self.binarySearch(nums[start:end], target)
+        if index > 0:
+            index += start
+        return index
+        
+
+
+print(Solution().search([1, 2, 3, 4, 5, 6, 7, 8, 9], 3))
+print(Solution().search([2, 3, 4, 5, 6, 7, 8, 9, 1], 3))
+print(Solution().search([3, 4, 5, 6, 7, 8, 9, 1, 2], 3))
+print(Solution().search([4, 5, 6, 7, 8, 9, 1, 2, 3], 3))
+print(Solution().search([5, 6, 7, 8, 9, 1, 2, 3, 4], 3))
+print(Solution().search([6, 7, 8, 9, 1, 2, 3, 4, 5], 3))
+print(Solution().search([7, 8, 9, 1, 2, 3, 4, 5, 6], 3))
+print(Solution().search([8, 9, 1, 2, 3, 4, 5, 6, 7], 3))
+print(Solution().search([9, 1, 2, 3, 4, 5, 6, 7, 8], 3))
