@@ -1,6 +1,30 @@
 from collections import Counter
 
 class Solution:
+    # O(N)
+    def characterReplacement(self, s: str, k: int) -> int:
+        max_char = 0
+        max_window = 0
+        start = 0
+        char_count = {}
+        for end in range(len(s)):
+            # curr_str = s[start:end+1]
+            char_count[s[end]] = char_count.get(s[end], 0) + 1
+            max_char = max(max_char, char_count[s[end]]) 
+            curr_window = end - start + 1
+            
+            while start < end:
+                if curr_window - max_char <= k: #there exists a replacement in less than k steps that satisfies substring start to end
+                    break
+                # curr_str = s[start:end+1]
+                char_count[s[start]] -= 1
+                start += 1
+                curr_window -= 1
+            
+            max_window = max(max_window, end - start + 1)
+        return max_window
+
+    # O(26N)
     def characterReplacement(self, s: str, k: int) -> int:
         max_char = 0
         max_window = 0
