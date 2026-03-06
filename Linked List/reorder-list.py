@@ -107,7 +107,6 @@ class Solution:
                 temp1.next = None
             front2 = temp2
             front1 = temp1
-        return head
              
 def list_to_linked_list(items):
     if not items:
