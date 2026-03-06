@@ -5,7 +5,8 @@ class ListNode:
         self.next = next
 class Solution:
     # one-pass, 
-    # When the first pointer (tail) reaches the end, the second pointer (nodeN) is exactly n nodes from the end
+    # When the first pointer (tail) reaches the end, the second pointer (nodeN)
+    # is exactly n nodes from the end
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         tail = head
         length = 0
@@ -16,7 +17,8 @@ class Solution:
             tail = tail.next                 
         nodeN = head
 
-        # When the first pointer (tail) reaches the end, the second pointer (nodeN) is exactly n nodes from the end
+        # When the first pointer (tail) reaches the end, the second pointer 
+        # (nodeN) is exactly n nodes from the end
         prev = None
         while tail:
             length += 1
