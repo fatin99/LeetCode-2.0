@@ -79,41 +79,36 @@ class Solution:
         mid = head
         while tail.next:
             mid = mid.next
-            if tail.next.next:
-                tail = tail.next.next
-            elif tail.next:
+            if tail.next:
+                tail = tail.next
+            if tail.next:
                 tail = tail.next
         
         
         #reverse second half
-        prev = None
-        curr = mid
-
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
+        front2 = None
+        while mid:
+            temp = mid.next
+            mid.next = front2
+            front2 = mid
+            mid = temp
         
-        front2 = prev
-        front1 = head
-        
+        front1 = head        
         # combine first and second half
-        while front2:
+        while front2 and front1:
             temp1 = front1.next
             temp2 = front2.next
-
             front1.next = front2
             front2.next = temp1
-            if not temp2 and not temp1:                
-                front2.next = None
+            
+            if temp2 and not temp1:                
+                temp2.next = None
             if not temp2 and temp1:
                 temp1.next = None
             front2 = temp2
             front1 = temp1
         return head
              
-
 def list_to_linked_list(items):
     if not items:
         return None
