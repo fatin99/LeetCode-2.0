@@ -95,7 +95,6 @@ class Solution:
 def to_binary_tree(items):
     if not items:
         return None
-
     it = iter(items)
     root = TreeNode(next(it))
     q = [root]
