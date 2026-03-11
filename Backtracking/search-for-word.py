@@ -1,34 +1,62 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        def dfs(currStr: int, mIndex: int, nIndex: int, visited: set) -> None:
-            char = board[mIndex][nIndex]
-            newStr = currStr + char
-            if not word.startswith(newStr):
-                return
+        def dfs(strIndex: int, mIndex: int, nIndex: int) -> None:
             if (mIndex, nIndex) in visited:
                 return
-            if newStr == word:
+            
+            if not board[mIndex][nIndex] == word[strIndex]:
+                return
+            board[mIndex][nIndex] = "#"
+            strIndex += 1
+            if strIndex == len(word):
                 return True
             
             if mIndex > 0:
-                if dfs(newStr, mIndex - 1, nIndex, visited | {(mIndex, nIndex)}):
+                if dfs(strIndex, mIndex - 1, nIndex):
                     return True
             if nIndex > 0:
-                if dfs(newStr, mIndex, nIndex- 1, visited | {(mIndex, nIndex)}):
+                if dfs(strIndex, mIndex, nIndex- 1):
                     return True
             if mIndex < len(board) - 1:
-                if dfs(newStr, mIndex + 1, nIndex, visited | {(mIndex, nIndex)}):
+                if dfs(strIndex, mIndex + 1, nIndex):
                     return True
             if nIndex < len(board[mIndex]) - 1:
-                if dfs(newStr, mIndex, nIndex + 1, visited | {(mIndex, nIndex)}):
+                if dfs(strIndex, mIndex, nIndex + 1):
                     return True
+            board[mIndex][nIndex] = word[strIndex - 1]
             return
         
         for i in range(len(board)):
             for j in range(len(board[i])):
-                if dfs("", i, j, set()):
+                if dfs(0, i, j):
                     return True
         return False
+    
+    def exist(self, board: List[List[str]], word: str) -> bool:        
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                stack = [(0, i, j, set())]
+                while stack:
+                    strIndex, mIndex, nIndex, visited = stack.pop()
+                    if (mIndex, nIndex) in visited:
+                        continue
+                    
+                    if not board[mIndex][nIndex] == word[strIndex]:
+                        continue
+                    strIndex += 1
+                    if strIndex == len(word):
+                        return True
+
+                    if mIndex > 0:
+                        stack.append((strIndex, mIndex - 1, nIndex, visited | {(mIndex, nIndex)}))
+                    if nIndex > 0:
+                        stack.append((strIndex, mIndex, nIndex- 1, visited | {(mIndex, nIndex)}))
+                    if mIndex < len(board) - 1:
+                        stack.append((strIndex, mIndex + 1, nIndex, visited | {(mIndex, nIndex)}))
+                    if nIndex < len(board[mIndex]) - 1:
+                        stack.append((strIndex, mIndex, nIndex + 1, visited | {(mIndex, nIndex)}))
+        return False
+
         
 # A B C E
 # S F C S
@@ -44,24 +72,3 @@ print(Solution().exist(board, word))
 board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
 word = "ABCB"
 print(Solution().exist(board, word))
-
-    # def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-    #     res = []
-
-    #     def dfs(currSum: int, currNums: List[int], index: int) -> None:
-    #         if currSum == target:
-    #             res.append(list(currNums))
-    #             return
-    #         while index < len(candidates):
-    #             num = candidates[index]
-    #             newSum = currSum + num
-    #             if newSum > target:
-    #                 index += 1
-    #                 continue
-    #             currNums.append(num)
-    #             dfs(newSum, currNums, index)
-    #             currNums.pop()
-    #             index += 1
-
-    #     dfs(0, [], 0)
-    #     return res
