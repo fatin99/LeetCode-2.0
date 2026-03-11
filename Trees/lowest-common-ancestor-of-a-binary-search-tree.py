@@ -22,6 +22,24 @@ class Solution:
     #             stack.append((node.left, path + [node]))
     #     return []
 
+    # def pre_order_traversal(self, root, child):
+        # res = []
+        # stack = [(root, [str(root.val)])]
+
+        # while stack:
+        #     node, path = stack.pop()
+
+        #     # leaf node
+        #     if not any(node.children):
+        #         res.append("->".join(path))
+        #         continue
+
+        #     for child in node.children:
+        #         if child:
+        #             stack.append((child, path + [str(child.val)]))
+
+        # return res
+
     # def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
     #     path_p = self.pre_order_traversal(root, p)
     #     path_q = self.pre_order_traversal(root, q)
