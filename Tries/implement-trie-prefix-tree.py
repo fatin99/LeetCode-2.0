@@ -10,32 +10,29 @@ class Trie:
 
     def insert(self, word: str) -> None:
         parent = self.root
-        for i in range(len(word)):
-            curr = TrieNode()
-            if word[i] in parent.children:
-                curr = parent.children[word[i]]
+        for char in word:
+            if char in parent.children:
+                curr = parent.children[char]
             else:
-                parent.children[word[i]] = curr
-            if i == len(word) - 1:
-                curr.is_end_of_word = True
+                curr = TrieNode()
+                parent.children[char] = curr                
             parent = curr
+        curr.is_end_of_word = True
 
     def search(self, word: str) -> bool:
         curr = self.root
-        for i in range(len(word)):
-            if word[i] in curr.children:
-                curr = curr.children[word[i]]
-                if i == len(word) - 1:
-                    return curr.is_end_of_word
+        for char in word:
+            if char in curr.children:
+                curr = curr.children[char]                    
             else:
                 return False
-        return True
+        return curr.is_end_of_word
         
     def startsWith(self, prefix: str) -> bool:
         curr = self.root
-        for i in range(len(prefix)):
-            if prefix[i] in curr.children:
-                curr = curr.children[prefix[i]]
+        for char in prefix:
+            if char in curr.children:
+                curr = curr.children[char]
             else:
                 return False
         return True
