@@ -19,6 +19,7 @@ class WordDictionary:
             parent = curr
         curr.is_end_of_word = True
 
+    # BFS
     def search(self, word: str) -> bool:   
         currNodes = [self.root]
         for char in word:
@@ -39,6 +40,19 @@ class WordDictionary:
          if curr.is_end_of_word:
             return True
         return False
+    
+    # DFS
+    def search(self, word: str) -> bool:
+        def dfs(node, i):
+            if i == len(word):
+                return node.is_end_of_word
+            char = word[i]
+            if char == ".":
+                return any(dfs(child, i + 1) for child in node.children.values())
+            if char in node.children:
+                return dfs(node.children[char], i + 1)
+            return False
+        return dfs(self.root, 0)
 
 wordDictionary = WordDictionary()
 print(wordDictionary.addWord("at"))
