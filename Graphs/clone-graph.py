@@ -5,6 +5,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 from typing import Optional
+from collections import deque
 class Solution:
     # DFS
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
@@ -31,5 +32,34 @@ class Solution:
                     stack.append((neighbor, newNeighbor))
             if not current in visited:
                 visited.add(current)
+
+        return newNode
+    
+    # BFS
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        visited = set()
+        queue = deque()
+
+        newNode = None
+        created = {}
+
+        if node: 
+            newNode = Node(node.val)
+            created[node.val] = newNode
+            visited.add(node)
+            queue.append((node, newNode))
+
+        while queue:
+            current, newCurrent = queue.popleft()
+            for neighbor in current.neighbors:
+                if neighbor.val in created:
+                    newNeighbor = created[neighbor.val]
+                else:
+                    newNeighbor = Node(neighbor.val)
+                    created[neighbor.val] = newNeighbor  
+                newCurrent.neighbors.append(newNeighbor)           
+                if not neighbor in visited:
+                    visited.add(neighbor)
+                    queue.append((neighbor, newNeighbor))
 
         return newNode
