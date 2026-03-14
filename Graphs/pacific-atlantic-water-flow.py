@@ -25,13 +25,10 @@ class Solution:
 
                 currHeight = heights[r][c]
 
-                # if not hasPath[mIndex][nIndex][0]: #check for path to pacific
                 if r > 0 and heights[r - 1][c] <= currHeight and (r - 1, c) not in visited:
                     queue.append((r - 1, c)) #up
                 if c > 0 and heights[r][c - 1] <= currHeight and (r, c - 1) not in visited:
                     queue.append((r, c - 1)) #left
-                
-                # if not hasPath[mIndex][nIndex][1]: #check for path to atlantic
                 if r < len(heights) - 1 and heights[r + 1][c] <= currHeight and (r + 1, c) not in visited:
                     queue.append((r + 1, c)) #down
                 if c < len(heights[r]) - 1 and heights[r][c + 1] <= currHeight and (r, c + 1) not in visited:
