@@ -13,6 +13,7 @@ class Solution:
 
             while queue:
                 r, c = queue.popleft()
+                visited.add((r,c))
 
                 if r == 0 or c == 0 or hasPath[r][c][0]:
                     hasPath[mIndex][nIndex][0] = True
@@ -24,18 +25,18 @@ class Solution:
 
                 currHeight = heights[r][c]
 
-                if not hasPath[mIndex][nIndex][0]: #check for path to pacific
-                    if r > 0 and heights[r - 1][c] <= currHeight and (r - 1, c) not in visited:
-                        queue.append((r - 1, c))
-                    if c > 0 and heights[r][c - 1] <= currHeight and (r, c - 1) not in visited:
-                        queue.append((r, c - 1))
+                # if not hasPath[mIndex][nIndex][0]: #check for path to pacific
+                if r > 0 and heights[r - 1][c] <= currHeight and (r - 1, c) not in visited:
+                    queue.append((r - 1, c)) #up
+                if c > 0 and heights[r][c - 1] <= currHeight and (r, c - 1) not in visited:
+                    queue.append((r, c - 1)) #left
                 
-                if not hasPath[mIndex][nIndex][1]: #check for path to atlantic
-                    if r < len(heights) - 1 and heights[r + 1][c] <= currHeight and (r + 1, c) not in visited:
-                        queue.append((r + 1, c))
-                    if c < len(heights[r]) - 1 and heights[r][c + 1] <= currHeight and (r, c + 1) not in visited:
-                        queue.append((r, c + 1))
-            
+                # if not hasPath[mIndex][nIndex][1]: #check for path to atlantic
+                if r < len(heights) - 1 and heights[r + 1][c] <= currHeight and (r + 1, c) not in visited:
+                    queue.append((r + 1, c)) #down
+                if c < len(heights[r]) - 1 and heights[r][c + 1] <= currHeight and (r, c + 1) not in visited:
+                    queue.append((r, c + 1)) #right
+        
             return False
         
         result = []
@@ -44,7 +45,7 @@ class Solution:
                 if  all(hasPath[i][j]):
                     result.append([i, j])
                 else:
-                    visited = {(i, j)}
+                    visited = set()
                     if bfs(i, j):
                         result.append([i, j])
 
@@ -61,5 +62,12 @@ print(Solution().pacificAtlantic(grid))
 
 grid = [
     [1]
+]
+print(Solution().pacificAtlantic(grid))
+
+grid = [
+    [1,2,3],
+    [8,9,4],
+    [7,6,5]
 ]
 print(Solution().pacificAtlantic(grid))
