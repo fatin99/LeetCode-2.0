@@ -16,10 +16,10 @@ class Solution:
 
                 if r == 0 or c == 0 or hasPath[r][c][0]:
                     hasPath[mIndex][nIndex][0] = True
-                if r == len(heights) - 1 or c == len(heights[mIndex]) - 1 or hasPath[r][c][1]:
+                if r == m - 1 or c == n - 1 or hasPath[r][c][1]:
                     hasPath[mIndex][nIndex][1] = True
 
-                if hasPath[mIndex][nIndex][0] == True and hasPath[mIndex][nIndex][1] == True:
+                if all(hasPath[mIndex][nIndex]):
                     return True
 
                 currHeight = heights[r][c]
