@@ -2,49 +2,41 @@ from collections import deque
 
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        m, n = len(heights), len(heights[0])
-        hasPath = [
-            [[i == 0 or j == 0, i == m - 1 or j == n - 1] for j in range(n)]
-            for i in range(m)
-        ]
+        rows, cols = len(heights), len(heights[0])
+        hasPath = [[[False, False] for _ in row] for row in heights]
                     
-        def bfs(mIndex: int, nIndex: int) -> None:
-            queue = deque([(mIndex, nIndex)])
-
+        def bfs(source, fromPacific) -> None:
+            queue = deque(source)
             while queue:
                 r, c = queue.popleft()
-                visited.add((r,c))
+                ocean = 0 if fromPacific else 1
 
-                if r == 0 or c == 0 or hasPath[r][c][0]:
-                    hasPath[mIndex][nIndex][0] = True
-                if r == m - 1 or c == n - 1 or hasPath[r][c][1]:
-                    hasPath[mIndex][nIndex][1] = True
-
-                if all(hasPath[mIndex][nIndex]):
-                    return True
-
+                hasPath[r][c][ocean] = True
                 currHeight = heights[r][c]
+                
+                for dr, dc in [(1,0), (0,1), (-1,0), (0,-1)]:
+                    newRow  = r + dr
+                    newCol = c + dc
+                    if 0 <= newRow < rows and 0 <= newCol < cols:
+                        newHeight = heights[newRow][newCol]
+                        
+                        newPath = hasPath[newRow][newCol][ocean]
+                        if newHeight >= currHeight and not newPath:
+                            queue.append((newRow, newCol))
+        
+            return
 
-                if r > 0 and heights[r - 1][c] <= currHeight and (r - 1, c) not in visited:
-                    queue.append((r - 1, c)) #up
-                if c > 0 and heights[r][c - 1] <= currHeight and (r, c - 1) not in visited:
-                    queue.append((r, c - 1)) #left
-                if r < len(heights) - 1 and heights[r + 1][c] <= currHeight and (r + 1, c) not in visited:
-                    queue.append((r + 1, c)) #down
-                if c < len(heights[r]) - 1 and heights[r][c + 1] <= currHeight and (r, c + 1) not in visited:
-                    queue.append((r, c + 1)) #right
-        
-            return False
-        
+        pacificCells  = [(r, 0) for r in range(rows)] + [(0, c) for c in range(cols)]
+        atlanticCells = [(r, cols - 1) for r in range(rows)] + [(rows - 1, c) for c in range(cols)]
+
+        bfs(pacificCells, True)
+        bfs(atlanticCells, False)
+            
         result = []
-        for i in range(m):
-            for j in range(n):
+        for i in range(rows):
+            for j in range(cols):
                 if  all(hasPath[i][j]):
                     result.append([i, j])
-                else:
-                    visited = set()
-                    if bfs(i, j):
-                        result.append([i, j])
 
         return result
     
@@ -66,5 +58,12 @@ grid = [
     [1,2,3],
     [8,9,4],
     [7,6,5]
+]
+print(Solution().pacificAtlantic(grid))
+
+grid = [
+    [1,1],
+    [1,1],
+    [1,1]
 ]
 print(Solution().pacificAtlantic(grid))
