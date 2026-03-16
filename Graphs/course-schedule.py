@@ -15,7 +15,7 @@ class Solution:
         print(prereqMap)
 
         visited = set()
-        visiting = set()
+        visiting = set() #necessary for directed graph
 
         for course in range(numCourses):
             if course in visited:
