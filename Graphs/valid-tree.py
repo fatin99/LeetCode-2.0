@@ -16,16 +16,14 @@ class Solution:
         stack = [(0, -1)]
         while stack:
             current, parent = stack.pop()
-            if current in visited:
+            if current in visited: # has cycle
                 return False
             visited.add(current)
 
             if current in adjMap:
                 for neighbour in adjMap[current]:
                     if neighbour != parent:
-                        stack.append((neighbour, current))
-                adjMap.pop(current)
-            
+                        stack.append((neighbour, current))            
 
         if len(visited) < n:
             return False

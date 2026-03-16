@@ -19,7 +19,7 @@ class Solution:
 
             while stack:
                 parent, current = stack.pop()
-                if current in visited:
+                if current in visited:  # has cycle
                     continue
                 visited.add(current)
 

@@ -14,8 +14,8 @@ class Solution:
 
         print(prereqMap)
 
-        visited = set()
-        visiting = set() #necessary for directed graph
+        visited = set() # nodes that have already been explored
+        visiting = set() #necessary for directed graph, nodes that we are exploring in dfs
 
         for course in range(numCourses):
             if course in visited:
@@ -23,16 +23,16 @@ class Solution:
             stack = [(course, False)]
 
             while stack:
-                current, processed = stack.pop()
-                if processed:
+                current, explored = stack.pop()
+                if explored:
                     visiting.remove(current)
                     visited.add(current)
                     continue
 
-                if current in visiting:
+                if current in visiting: # has cycle
                     print(current)
                     return False
-                if current in visited:
+                if current in visited: # node has already been explored
                     continue
 
                 visiting.add(current)
@@ -57,7 +57,7 @@ class Solution:
         print(prereqMap)
 
         visited = set()
-        visiting = set()
+        visiting = set() #this is needed for undirected graph
 
         def has_cycle_dfs(current):
             if current in visiting:
