@@ -4,8 +4,6 @@ from typing import List
 class Solution:
     # Iterative
     # Time: O(V + E) | Space: O(V + E)
-    # Single state array replaces two sets, halving state-tracking space
-    # and avoiding hashing overhead on every lookup.
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         prereqMap = {}
         for prereq in prerequisites:
