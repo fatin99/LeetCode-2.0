@@ -1,12 +1,16 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if len(nums) >= 3:
-            dp = [nums[0], nums[1], nums[2]+nums[0]]
-            for i in range(3, len(nums)):
-                prevMax = max(dp[i - 2], dp[i - 3])
-                currMax = max(nums[i], nums[i]+prevMax)
+        if len(nums) > 1:
+            dp = [nums[0], nums[1]]
+            prevMax = nums[0]  # tracks max of dp[0..i-2]
+            
+            for i in range(2, len(nums)):
+                currMax = nums[i] + prevMax
+                prevMax = max(prevMax, dp[-1])  # update before appending
                 dp.append(currMax)
+            
             return max(dp[-1], dp[-2])
+        
         else:
             return max(nums)
 

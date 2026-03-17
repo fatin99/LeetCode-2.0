@@ -1,24 +1,28 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        def rob_helper(nums: List[int]) -> int:
-            if len(nums) >= 2:
-                prev = nums[1]
-                prev_prev = nums[0]
-                prev_max = prev_prev
-                for i in range(2, len(nums)):
-                    curr = max(nums[i], nums[i] + prev_max)
-                    prev_max = max(prev_max, prev)
-                    prev_prev, prev = prev, curr
-                return max(prev, prev_prev)
-            else:
-                return max(nums)
+        if len(nums) > 2:
+            dp0 = [nums[0], nums[1]]          
+            dp1 = [nums[1], nums[2]] 
+            prev_max0 = nums[0]
+            prev_max1 = nums[1]
 
+            for i in range(2, len(nums)):
+                # dp0: only update for i < len(nums)-1 (exclude last house)
+                if i < len(nums) - 1:
+                    currMax = nums[i] + prev_max0
+                    prev_max0 = max(prev_max0, dp0[-1])
+                    dp0.append(currMax)
+
+                # dp1: only update for i >= 2 but using nums[i] offset by 1 (exclude first house)
+                if i + 1 < len(nums):
+                    currMax = nums[i+1] + prev_max1
+                    prev_max1 = max(prev_max1, dp1[-1])
+                    dp1.append(currMax)
+
+            max0 = max(dp0[-1], dp0[-2])
+            max1 = max(dp1[-1], dp1[-2])
+            return max(max0, max1)
         
-        if len(nums) > 3:
-            return max(nums[0] + rob_helper(nums[2:-1]), 
-                       nums[-1] + rob_helper(nums[1:-2]), 
-                       rob_helper(nums[1:-1])
-                       )
         else:
             return max(nums)
 
