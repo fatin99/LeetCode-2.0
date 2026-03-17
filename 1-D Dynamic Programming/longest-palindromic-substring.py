@@ -4,19 +4,24 @@ class Solution:
         maxPalindrome = s[0]
         dp = []
         
+        def findPalindrome(start, end):
+            currStr = ""
+            while start >= 0 and end <= len(s)-1 and s[start] == s[end]:
+                currStr = s[start:end+1]
+                start -= 1
+                end += 1
+            return currStr
+
         for i in range(len(s)-1):
-            odd = (i, i) #centre of an odd length palindrome (e.g. babab)
-            even = (i, i + 1) #centre of an even length palindrome (e.g. cddc)
-            for start, end in [odd, even]:
-                
-                while start >= 0 and end <= len(s)-1 and s[start] == s[end]:
-                    currStr = s[start:end+1]
-                    start -= 1
-                    end += 1
-                
-                if len(currStr) > len(maxPalindrome):
-                    maxPalindrome = currStr
-                dp.append(currStr)
+            #start from centre of an odd length palindrome (e.g. babab)
+            oddStr = findPalindrome(i,i) 
+            #start from centre of an even length palindrome (e.g. cddc)        
+            evenStr = findPalindrome(i,i+1) 
+            maxStr = max(oddStr, evenStr, key=len)
+            
+            if len(maxStr) > len(maxPalindrome):
+                maxPalindrome = maxStr
+            dp.append(maxStr)
         
         print(dp)
         return maxPalindrome
