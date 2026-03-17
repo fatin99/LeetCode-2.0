@@ -10,9 +10,9 @@ class Solution:
             for start, end in [odd, even]:
                 
                 while start >= 0 and end <= len(s)-1 and s[start] == s[end]:
+                    currStr = s[start:end+1]
                     start -= 1
                     end += 1
-                    currStr = s[start+1:end]
                 
                 if len(currStr) > len(maxPalindrome):
                     maxPalindrome = currStr
