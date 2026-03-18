@@ -2,34 +2,33 @@ import math
 
 class Solution:
     # O(n^2)
-    def longestPalindrome(self, s: str) -> str:
-        maxPalindrome = s[0]
+    def countSubstrings(self, s: str) -> int:
         dp = []
         
         def findPalindrome(start, end):
             currStr = ""
+            palindrome = 0
             while start >= 0 and end <= len(s)-1 and s[start] == s[end]:
                 currStr = s[start:end+1]
+                dp.append(currStr)
+                palindrome += 1
                 start -= 1
                 end += 1
-            return currStr
+            return palindrome
 
-        for i in range(len(s)-1):
+        result = 0
+        for i in range(len(s)):
             #start from centre of an odd length palindrome (e.g. babab)
-            oddStr = findPalindrome(i,i) 
-            #start from centre of an even length palindrome (e.g. cddc)        
-            evenStr = findPalindrome(i,i+1) 
-            maxStr = max(oddStr, evenStr, key=len)
-            
-            if len(maxStr) > len(maxPalindrome):
-                maxPalindrome = maxStr
-            dp.append(maxStr)
+            result += findPalindrome(i,i) 
+            #start from centre of an even length palindrome (e.g. cddc)  
+            if i < len(s):      
+                result += findPalindrome(i,i+1)      
         
         print(dp)
-        return maxPalindrome
+        return result    
     
-    # Manacher's algorithm
-    def longestPalindrome(self, s: str) -> str:
+    # (Manacher's algorithm)
+    def countSubstrings(self, s: str) -> str:
         def manacher(s):
             # Preprocessing the string so that all palindromes become odd-length
             # For input string: s = "abba"
@@ -58,18 +57,11 @@ class Solution:
             return palindromes
 
         palindromes = manacher(s)
-        resultLen = 0 
-        centerIdx = None
-        for index, radius in enumerate(palindromes):
-            if radius >= resultLen:
-                resultLen = radius
-                centerIdx = index
-
-        resultIdx = math.floor((centerIdx - resultLen) / 2)
-        return s[resultIdx : resultIdx + resultLen]
-    
-print(Solution().longestPalindrome("babad"))
-print(Solution().longestPalindrome("cbbd"))
-print(Solution().longestPalindrome("cbbc"))
-print(Solution().longestPalindrome("abbcccba"))
-print(1/2)
+        print(palindromes)
+        result = 0
+        for index, length in enumerate(palindromes):
+            if index % 2 == 1: #length of odd palindrome
+                result += math.ceil(length / 2)
+            else: #length of even palindrome
+                result += math.floor(length / 2)
+        return result
