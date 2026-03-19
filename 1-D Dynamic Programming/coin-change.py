@@ -13,21 +13,18 @@ class Solution:
         count = 1
         while True:
             currSums = set()
-            for k in range(count):
-                for i in range(k, len(prevSums)):
-                    prevSum = prevSums[i]
-                    for j in range(len(coins)):
-                        coin = coins[j]
-                        currSum = prevSum + coin
-                        if currSum < amount:
-                            currSums.add(currSum)
-                        elif currSum == amount:
-                            return count
+            for prevSum in prevSums:
+                for coin in coins:
+                    currSum = prevSum + coin
+                    if currSum < amount:
+                        currSums.add(currSum)
+                    elif currSum == amount:
+                        return count
             currSums = list(currSums)
-            print(count)
-            print(currSums)
-            print()
-            if not currSums or min(currSums) > amount:
+            # print(count)
+            # print(currSums)
+            # print()
+            if not currSums:
                 return -1
             
             count += 1
@@ -43,9 +40,9 @@ print(Solution().coinChange(coins, amount))
 coins = [1]
 amount = 0
 print(Solution().coinChange(coins, amount))
-# coins = [186,419,83,408]
-# amount = 6249
-# print(Solution().coinChange(coins, amount))
-# coins = [412,392,401,75,38,106,223]
-# amount = 7802
-# print(Solution().coinChange(coins, amount))
+coins = [186,419,83,408]
+amount = 6249
+print(Solution().coinChange(coins, amount))
+coins = [412,392,401,75,38,106,223]
+amount = 7802
+print(Solution().coinChange(coins, amount))
