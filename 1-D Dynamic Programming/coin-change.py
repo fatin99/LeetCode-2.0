@@ -12,19 +12,20 @@ class Solution:
             return -1
 
         prevSums = [0]
-        
         count = 1
         while True:
-            currSums = []
-            for i in range(len(prevSums)):
-                prevSum = prevSums[i]
-                for j in range(i, len(coins)):
-                    coin = coins[j]
-                    currSum = prevSum + coin
-                    if currSum < amount:
-                        currSums.append(currSum)
-                    elif currSum == amount:
-                        return count
+            currSums = set()
+            for k in range(count):
+                for i in range(k, len(prevSums)):
+                    prevSum = prevSums[i]
+                    for j in range(len(coins)):
+                        coin = coins[j]
+                        currSum = prevSum + coin
+                        if currSum < amount:
+                            currSums.add(currSum)
+                        elif currSum == amount:
+                            return count
+            currSums = list(currSums)
             if not currSums or currSums[-1] > amount:
                 return -1
             count += 1
@@ -32,7 +33,7 @@ class Solution:
         
 
 
-coins = [1,2,5]
+coins = [2,5,1]
 amount = 11
 print(Solution().coinChange(coins, amount))
 coins = [2]
@@ -40,6 +41,9 @@ amount = 3
 print(Solution().coinChange(coins, amount))
 coins = [1]
 amount = 0
+print(Solution().coinChange(coins, amount))
+coins = [186,419,83,408]
+amount = 6249
 print(Solution().coinChange(coins, amount))
 
 # 5 2 1 --> 11
