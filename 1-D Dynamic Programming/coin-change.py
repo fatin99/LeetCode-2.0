@@ -8,8 +8,6 @@ class Solution:
         coins.sort(reverse=True) # O(1), 1 <= coins.length <= 12
         if coins[-1] > amount:
             return -1
-        if len(coins) == 1 and coins[0] > amount:
-            return -1
 
         prevSums = [0]
         count = 1
@@ -26,11 +24,14 @@ class Solution:
                         elif currSum == amount:
                             return count
             currSums = list(currSums)
-            if not currSums or currSums[-1] > amount:
+            print(count)
+            print(currSums)
+            print()
+            if not currSums or min(currSums) > amount:
                 return -1
+            
             count += 1
-            prevSums = currSums
-        
+            prevSums = currSums 
 
 
 coins = [2,5,1]
@@ -42,41 +43,9 @@ print(Solution().coinChange(coins, amount))
 coins = [1]
 amount = 0
 print(Solution().coinChange(coins, amount))
-coins = [186,419,83,408]
-amount = 6249
-print(Solution().coinChange(coins, amount))
-
-# 5 2 1 --> 11
-
-# 1 coin
-# 5 
-# 2
-# 1
-
-# 2 coin
-# 55 
-# 52 
-# 51
-# 22
-# 21
-# 11 --> check if this is more than amount, if it is, return -1
-
-# 3 coin
-# 555
-# 525
-# 515 
-# 225
-# 215
-# 115
-# 552
-# 522
-# 512
-# 222
-# 212
-# 112
-# 551
-# 521
-# 511
-# 221
-# 211
-# 111
+# coins = [186,419,83,408]
+# amount = 6249
+# print(Solution().coinChange(coins, amount))
+# coins = [412,392,401,75,38,106,223]
+# amount = 7802
+# print(Solution().coinChange(coins, amount))
