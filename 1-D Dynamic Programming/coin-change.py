@@ -2,21 +2,22 @@ class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         if amount == 0:
             return 0
-    
-        coins.sort(reverse=True) # O(1), 1 <= coins.length <= 12
         if coins[-1] > amount:
             return -1
         
-        prev = [coins[0]]
+        coins.sort(reverse=True) # O(1), 1 <= coins.length <= 12
+        prev = set([coins[0]])
 
         for i in range(1, len(coins)):
             result = []
-            for j in range(len(prev)):
-                for k in range(j, i+1):
-                    currSum = coins[k]+prev[j]
+            for index, prevSum in enumerate(prev):
+                for k in range(index, i+1):
+                    currSum = coins[k]+prevSum
                     result.append(currSum)
+            
             if len(prev) > 1:
-                result.append(int(prev[-1]/i*(i+1)))
+                result.append(int(prevSum/i*(i+1)))
+            
             currSum = coins[i]*(i+1)
             result.append(currSum)
             prev = result
@@ -26,7 +27,7 @@ class Solution:
 
 
 
-coins = [1,2,3,4]
+coins = [1,2,5]
 amount = 11
 print(Solution().coinChange(coins, amount))
 
