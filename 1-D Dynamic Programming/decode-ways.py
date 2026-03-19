@@ -1,20 +1,94 @@
 class Solution:
+    # Bottom-up without Tabulation
+    # Time: O(n) --> n is the length of s
+    # Space: O(1)
     def numDecodings(self, s: str) -> int:
         if len(s) == 0:
             return 0
         
-        dp = [1]
+        prevprev = 1  # --> Now, space is constant because we dont need entire dp array
+        if s[0] == "0":
+            return 0
+        prev = 1
 
-        for i in range(1, len(s) + 1):
+        result = 0
+        for i in range(2, len(s) + 1):
             result = 0
-            for j in range(i):
-                substring = s[j:i]
-                if substring[0] == "0" or int(substring) > 26:
+            for j in range(i-2, i):
+                if s[j] == "0" or (i - j) > 2:
                     continue
-                result += dp[j]
-            dp.append(result)
+                substring = s[j:i] # --> This costs O(n), not O(1) (╥﹏╥)
+                if int(substring) > 26:
+                    continue
+                if j == i - 1:
+                    result += prev       
+                if j == i - 2:
+                    result += prevprev    
+            prevprev = prev
+            prev = result
 
-        return dp[-1]
+        return result
+    
+    # # Bottom-up with Tabulation
+    # Time: O(n) --> n is the length of s
+    # Space: O(n)
+    # def numDecodings(self, s: str) -> int:
+    #     if len(s) == 0:
+    #         return 0
+        
+    #     dp = [1]
+    #     if s[0] != "0":
+    #         dp.append(1)
+    #     else:
+    #         return 0
+    #     # E.g. given "123"
+    #     # dp = [
+    #     #  1 (null case)
+    #     #  1 ("1")
+    #     #  2 ("12" and "2")
+    #     #  3 ("123" and "23" and "3")
+    #     #]
+
+    #     for i in range(2, len(s) + 1):
+    #         result = 0
+    #         for j in range(i-2, i): # --> Now, this is constant
+    #             if s[j] == "0" or (i - j) > 2:
+    #                 continue
+    #             substring = s[j:i] # --> Now, this is constant because j can only == i-2 at worst
+    #             if int(substring) > 26:
+    #                 continue
+    #             result += dp[j]
+    #         dp.append(result)
+
+    #     print(dp)
+    #     return dp[-1]
+
+    # Time: O(n^3) --> n is the length of s
+    # Space: O(n)
+    # Bottom-up with Tabulation
+    # def numDecodings(self, s: str) -> int:
+    #     if len(s) == 0:
+    #         return 0
+        
+    #     dp = [1]
+    #     # E.g. given "123"
+    #     # dp = [
+    #     #  1 (null case)
+    #     #  1 ("1")
+    #     #  2 ("12" and "2")
+    #     #  3 ("123" and "23" and "3")
+    #     #]
+
+    #     for i in range(1, len(s) + 1):
+    #         result = 0
+    #         for j in range(i):
+    #             substring = s[j:i] # --> This costs O(n), not O(1) (╥﹏╥)
+    #             if substring[0] == "0" or int(substring) > 26:
+    #                 continue
+    #             result += dp[j]
+    #         dp.append(result)
+
+    #     return dp[-1]
 
     #Bottom-up with Tabulation
     # def numDecodings(self, s: str) -> int:
@@ -132,7 +206,8 @@ class Solution:
     #     dfs(0, [])
     #     return len(result)
 
-print(Solution().numDecodings("123"))
+# print(Solution().numDecodings("06"))
+# print(Solution().numDecodings("123"))
 print(Solution().numDecodings("123123"))
 
 # [[[""]], [[1]], [[1,2][12]], [[1,2,3][1,23][12,3]]]
