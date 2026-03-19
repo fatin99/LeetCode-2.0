@@ -1,6 +1,7 @@
 from collections import deque
 
 class Solution:
+    # DP Bottom Up (BFS)
     def coinChange(self, coins: List[int], amount: int) -> int:
         if amount == 0:
             return 0
@@ -8,15 +9,16 @@ class Solution:
         coins.sort(reverse=True) # O(1), 1 <= coins.length <= 12
         if coins[-1] > amount:
             return -1
-
+        
         prevSums = [0]
         count = 1
+        visited = set([0])
         while True:
             currSums = set()
             for prevSum in prevSums:
                 for coin in coins:
                     currSum = prevSum + coin
-                    if currSum < amount:
+                    if currSum < amount and currSum not in visited:
                         currSums.add(currSum)
                     elif currSum == amount:
                         return count
@@ -29,6 +31,7 @@ class Solution:
             
             count += 1
             prevSums = currSums 
+            visited.update(currSums) 
 
 
 coins = [2,5,1]
