@@ -12,7 +12,6 @@ class Solution:
         memo = {}
 
         def findWord(currStr, start, end):
-            print((start, end))
             if (start, end) in memo:
                 return memo[(start, end)]
             if currStr in wordDictSet:
@@ -24,9 +23,11 @@ class Solution:
                     currStr = s[end:newEnd]
                     for newLen in range(newEnd, end + minLen, -1):
                         if findWord(currStr, end, newLen):
-                            memo[(start, end)] = True
+                            memo[(end, newLen)] = True
                             return True
                         currStr = currStr[:-1]
+                    memo[(start, end)] = False
+                    return False
             else:
                 memo[(start, end)] = False
                 return False
@@ -51,14 +52,14 @@ class Solution:
 # wordDict = ["cats","dog","sand","and","cat"]
 # print(Solution().wordBreak(s, wordDict))
 
-s = "bb"
-wordDict = ["a","b","bbb","bbbb"]
-print(Solution().wordBreak(s, wordDict))
-
-# s ="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
-# wordDict = ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
+# s = "bb"
+# wordDict = ["a","b","bbb","bbbb"]
 # print(Solution().wordBreak(s, wordDict))
 
-s ="abcd"
-wordDict =["a","abc","b","cd"]
+s ="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+wordDict = ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
 print(Solution().wordBreak(s, wordDict))
+
+# s ="abcd"
+# wordDict =["a","abc","b","cd"]
+# print(Solution().wordBreak(s, wordDict))
