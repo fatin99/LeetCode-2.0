@@ -33,16 +33,18 @@ class Solution:
             return 0 
 
         prevSums = {0: 1}
+        nextSum = totalSum
+
         for i in range(0, len(nums)):
             currSums = defaultdict(int)
-            nextSums = sum(nums[i+1:])
+            nextSum -= nums[i]
             for prevSum, ways in prevSums.items():
                 add = prevSum + nums[i]
-                if target <= add + nextSums and target >= add - nextSums:
+                if target <= add + nextSum and target >= add - nextSum:
                     currSums[add] += ways
 
                 subtract = prevSum - nums[i]
-                if target <= subtract + nextSums and target >= subtract - nextSums:
+                if target <= subtract + nextSum and target >= subtract - nextSum:
                     currSums[subtract] += ways
             prevSums = currSums 
         return prevSums.get(target, 0)
