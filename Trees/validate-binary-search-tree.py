@@ -4,7 +4,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 from collections import deque
+
 
 class Solution:
     # def isValidBST(self, root: Optional[TreeNode]) -> bool:
@@ -21,7 +23,7 @@ class Solution:
     #             if node.right:
     #                 if node.val >= node.right.val:
     #                     return False
-    #                 queue.append((node.right, path + [(node, False, True)])) 
+    #                 queue.append((node.right, path + [(node, False, True)]))
     #             for ancestor in path:
     #                 parent = ancestor[0]
     #                 left = ancestor[1]
@@ -58,9 +60,9 @@ class Solution:
                 if node.val >= node.right.val:
                     return False
                 if minimum:
-                    stack.append((node.right, max(minimum, node.val), maximum)) 
+                    stack.append((node.right, max(minimum, node.val), maximum))
                 else:
-                    stack.append((node.right, node.val, maximum)) 
+                    stack.append((node.right, node.val, maximum))
         return True
 
     # BFS
@@ -87,10 +89,11 @@ class Solution:
                 if node.val >= node.right.val:
                     return False
                 if minimum:
-                    queue.append((node.right, max(minimum, node.val), maximum)) 
+                    queue.append((node.right, max(minimum, node.val), maximum))
                 else:
-                    queue.append((node.right, node.val, maximum)) 
+                    queue.append((node.right, node.val, maximum))
         return True
+
 
 def to_binary_tree(items):
     if not items:
@@ -109,11 +112,12 @@ def to_binary_tree(items):
             q.append(node.right)
     return root
 
-root = to_binary_tree([5,4,6,None,None,3,7])
+
+root = to_binary_tree([5, 4, 6, None, None, 3, 7])
 print(Solution().isValidBST(root))
 
-root = to_binary_tree([3,1,5,0,2,4,6])
+root = to_binary_tree([3, 1, 5, 0, 2, 4, 6])
 print(Solution().isValidBST(root))
 
-root = to_binary_tree([32,26,47,19,None,None,56,None,27])
+root = to_binary_tree([32, 26, 47, 19, None, None, 56, None, 27])
 print(Solution().isValidBST(root))

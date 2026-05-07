@@ -15,4 +15,5 @@ class Solution:
                 return False
         return True
 
+
 print(Solution().isPalindrome("A man, a plan, a canal: Panama"))

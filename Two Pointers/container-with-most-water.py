@@ -11,8 +11,9 @@ class Solution:
             area = max(area, currHeight * length)
             if leftHeight < rightHeight:
                 start += 1
-            else: 
+            else:
                 end -= 1
         return area
-        
-print(Solution().maxArea([1,1]))
+
+
+print(Solution().maxArea([1, 1]))

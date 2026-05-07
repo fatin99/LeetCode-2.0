@@ -4,9 +4,10 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
     max_diameter = 0
-    
+
     # def pre_order_traversal(self, node):
     #     if node is None:
     #         return 0
@@ -14,7 +15,7 @@ class Solution:
     #     right_height = self.pre_order_traversal(node.right)
     #     self.max_diameter = max(self.max_diameter, left_height+right_height)
     #     return 1 + max(left_height, right_height)
-    
+
     # Iterative DFS
     node_heights = {}
 
@@ -40,7 +41,6 @@ class Solution:
 
         return maxDiameter
 
-
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.max_height = 0
         self.node_heights = {None: 0}
@@ -50,8 +50,8 @@ class Solution:
         #     self.max_diameter = max(self.max_diameter, diameter)
         # return self.max_height
         return self.pre_order_traversal(root)
-    
-    
+
+
 def to_binary_tree(items):
     if not items:
         return None
@@ -70,7 +70,8 @@ def to_binary_tree(items):
             q.append(node.right)
     return root
 
+
 # root = to_binary_tree([1,2])
 # print(Solution().diameterOfBinaryTree(root))
-root = to_binary_tree([1,2,None, None, 4, 5, 6])
+root = to_binary_tree([1, 2, None, None, 4, 5, 6])
 print(Solution().diameterOfBinaryTree(root))

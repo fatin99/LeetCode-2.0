@@ -7,7 +7,8 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-        
+
+
 class Solution:
 
     # def pre_order_traversal(root: Node):
@@ -15,7 +16,7 @@ class Solution:
     #         print(root.val)
     #         self.pre_order_traversal(root.left)
     #         self.pre_order_traversal(root.right)
-        
+
     # def in_order_traversal(self, node, nodes):
     #     if node is None:
     #         return
@@ -26,9 +27,9 @@ class Solution:
     # def post_order_traversal(root: Node):
     #     if root is not None:
     #         self.post_order_traversal(root.left)
-    #         post_order_traversal(root.right)
+    #         self.post_order_traversal(root.right)
     #         print(root.val)
-    
+
     # def pre_order_traversal(root, nodes):
     #     if root is None:
     #         return
@@ -74,7 +75,7 @@ class Solution:
     #     current_p, current_q = root_p, root_q
     #     if not self.nodes_equal(current_p, current_q):
     #         return False
-        
+
     #     while (stack_p or current_p) and (stack_q or current_q):
     #         # Go left as far as possible
     #         while current_p and current_q:
@@ -84,18 +85,18 @@ class Solution:
     #             current_q = current_q.left
     #             if not self.nodes_equal(current_p, current_q):
     #                 return False
-            
+
     #         current_p = stack_p.pop()
     #         current_q = stack_q.pop()
     #         if not self.nodes_equal(current_p, current_q):
     #             return False
-            
+
     #         current_p = current_p.right
     #         current_q = current_q.right
     #         if not self.nodes_equal(current_p, current_q):
     #             return False
     #     return True
-    
+
     def in_order_traversal(self, current_p, current_q):
         def nodes_equal(a, b):
             if (a is None) != (b is None):
@@ -107,17 +108,17 @@ class Solution:
         if current_p is None and current_q is None:
             return
         if not nodes_equal(current_p, current_q):
-            raise(Exception)
+            raise (Exception)
         self.in_order_traversal(current_p.left, current_q.left)
         self.in_order_traversal(current_p.right, current_q.right)
 
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         try:
             self.in_order_traversal(p, q)
-        except (Exception):
+        except Exception:
             return False
         return True
-    
+
     # BFS
     # def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
     #     q1 = deque([p])
@@ -140,6 +141,7 @@ class Solution:
 
     #     return True
 
+
 def to_binary_tree(items):
     if not items:
         return None
@@ -158,6 +160,7 @@ def to_binary_tree(items):
             q.append(node.right)
     return root
 
-p = to_binary_tree([1,2,3])
-q = to_binary_tree([1,2,3])
+
+p = to_binary_tree([1, 2, 3])
+q = to_binary_tree([1, 2, 3])
 print(Solution().isSameTree(p, q))

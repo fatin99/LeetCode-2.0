@@ -1,27 +1,28 @@
 class Solution:
     # https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm
-    def maxProduct(self, nums: List[int]) -> int:
-        result = nums[0]
-        curMin, curMax = 1, 1
+    def maxProduct(self, N, K) -> int:
+        maxLiquid = int((N * (N + 1)) / 2)
+        if K > maxLiquid:
+            return -1
 
-        for num in nums:
-            temp = curMax * num
-            curMax = max(temp, num * curMin, num)
-            curMin = min(temp, num * curMin, num)
-            result = max(result, curMax)
+        start = 1
+        end = N
+        result = N
+
+        while start < end:
+            curr = int((start + end) / 2)
+            remaining = N - curr
+            currLiquid = maxLiquid - int(((remaining) * (remaining + 1)) / 2)
+            if currLiquid >= K:
+                result = curr
+                end = curr
+            else:
+                start = curr + 1
+
         return result
 
-nums = [2,3,-2,4]
-print(Solution().maxProduct(nums))
 
-nums = [-2,0,-1]
-print(Solution().maxProduct(nums))
-
-nums = [1,2,-3,4]
-print(Solution().maxProduct(nums))
-
-nums = [-2,-1]
-print(Solution().maxProduct(nums))
-
-nums = [-2,3,-4]
-print(Solution().maxProduct(nums))
+print(Solution().maxProduct(5, 8))
+print(Solution().maxProduct(4, 10))
+print(Solution().maxProduct(1, 2))
+print(Solution().maxProduct(10, 5))

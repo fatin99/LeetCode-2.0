@@ -3,7 +3,8 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-    
+
+
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # currNode = head
@@ -35,11 +36,13 @@ class Solution:
             prev = curr
             curr = temp
         return prev
-    
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         dummy = ListNode(0)
         curr = dummy
-        
+
         while list1 and list2:
             if list1.val <= list2.val:
                 curr.next = list1
@@ -48,12 +51,12 @@ class Solution:
                 curr.next = list2
                 list2 = list2.next
             curr = curr.next
-        
+
         # Attach remaining nodes (only one list will have remaining nodes)
         curr.next = list1 if list1 else list2
-        
+
         return dummy.next
-    
+
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # nodeMap = {}
         # while head:
@@ -62,7 +65,7 @@ class Solution:
         #     nodeMap[head] = True
         #     head = head.next
         # return False
-    
+
         slow, fast = head, head
 
         while fast and fast.next:
@@ -71,7 +74,6 @@ class Solution:
             if slow == fast:
                 return True
         return False
-
 
 
 a = ListNode(val=9)

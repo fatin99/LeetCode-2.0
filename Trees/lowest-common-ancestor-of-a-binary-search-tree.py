@@ -5,6 +5,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
     # def pre_order_traversal(self, root, child):
     #     if root is None:
@@ -23,27 +24,27 @@ class Solution:
     #     return []
 
     # def pre_order_traversal(self, root, child):
-        # res = []
-        # stack = [(root, [str(root.val)])]
+    # res = []
+    # stack = [(root, [str(root.val)])]
 
-        # while stack:
-        #     node, path = stack.pop()
+    # while stack:
+    #     node, path = stack.pop()
 
-        #     # leaf node
-        #     if not any(node.children):
-        #         res.append("->".join(path))
-        #         continue
+    #     # leaf node
+    #     if not any(node.children):
+    #         res.append("->".join(path))
+    #         continue
 
-        #     for child in node.children:
-        #         if child:
-        #             stack.append((child, path + [str(child.val)]))
+    #     for child in node.children:
+    #         if child:
+    #             stack.append((child, path + [str(child.val)]))
 
-        # return res
+    # return res
 
     # def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
     #     path_p = self.pre_order_traversal(root, p)
     #     path_q = self.pre_order_traversal(root, q)
-        
+
     #     length = min(len(path_p), len(path_q))
     #     curr = None
     #     for i in range(length):
@@ -52,20 +53,19 @@ class Solution:
     #         else:
     #             return curr
     #     return curr
-        
 
     # def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
     #     stack = [(root, [])]  # (node, path_so_far)
     #     seen = False
-        
+
     #     while stack:
     #         node, path = stack.pop()
     #         if node == p or node == q:
-                
-    #             if seen: 
+
+    #             if seen:
     #                 path.append(node)
     #                 second_path = path
-                    
+
     #                 curr = None
     #                 for i in range(min(len(first_path), len(second_path))):
     #                     if first_path[i] == second_path[i]:
@@ -73,11 +73,11 @@ class Solution:
     #                     else:
     #                         return curr
     #                 return curr
-                
+
     #             seen = True
     #             path.append(node)
     #             first_path = path
-            
+
     #         # Go right and left, add current node to path
     #         if node.right:
     #             stack.append((node.right, path + [node]))
@@ -89,8 +89,10 @@ class Solution:
     # If they split (one on each side) or one equals the current node ->
     # current node is the LCA, because it's the first node where their paths diverge.
 
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        stack = [(root, [])]  # (node, path_so_far)        
+    def lowestCommonAncestor(
+        self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
+    ) -> "TreeNode":
+        stack = [(root, [])]  # (node, path_so_far)
         while stack:
             node, path = stack.pop()
             if p.val > node.val and q.val > node.val:
@@ -99,9 +101,12 @@ class Solution:
             if p.val < node.val and q.val < node.val:
                 if node.left:
                     stack.append((node.left, path + [node]))
-            if (p.val >= node.val and q.val <= node.val) or (p.val <= node.val and q.val >= node.val):
+            if (p.val >= node.val and q.val <= node.val) or (
+                p.val <= node.val and q.val >= node.val
+            ):
                 return node
         return root
+
 
 def to_binary_tree(items):
     if not items:
@@ -121,15 +126,16 @@ def to_binary_tree(items):
             q.append(node.right)
     return root
 
-root = to_binary_tree([6,2,8,0,4,7,9,None,None,3,5])
+
+root = to_binary_tree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
 print(Solution().lowestCommonAncestor(root, 2, 8))
 
-root = to_binary_tree([6,2,8,0,4,7,9,None,None,3,5])
+root = to_binary_tree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
 print(Solution().lowestCommonAncestor(root, 2, 4))
 
 
 root = to_binary_tree([2, 1])
 print(Solution().lowestCommonAncestor(root, 2, 1))
 
-root = to_binary_tree([3,1,4,None,2])
+root = to_binary_tree([3, 1, 4, None, 2])
 print(Solution().lowestCommonAncestor(root, 2, 4))

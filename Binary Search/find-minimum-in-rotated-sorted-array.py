@@ -5,9 +5,9 @@ class Solution:
         if nums[start] < nums[end]:
             return nums[start]
         while start < end:
-            i = int((start+end) / 2)
+            i = int((start + end) / 2)
             curr = nums[i]
-            if curr < nums[i-1]:
+            if curr < nums[i - 1]:
                 return curr
             left = nums[start]
             right = nums[end]
@@ -17,6 +17,7 @@ class Solution:
                 end = i
         if end == len(nums) - 1:
             return nums[end]
+
 
 print(Solution().findMin([1, 2, 3, 4, 5, 6, 7, 8, 9]))
 print(Solution().findMin([2, 3, 4, 5, 6, 7, 8, 9, 1]))

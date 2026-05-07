@@ -1,5 +1,6 @@
 import string
 
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         if not s:
@@ -17,7 +18,7 @@ class Solution:
                 end += 1
                 maxLength = max(maxLength, end - start)
         return maxLength
-                
+
     # def lengthOfLongestSubstring(self, s: str) -> int:
     #     if not s:
     #         return 0
@@ -37,7 +38,6 @@ class Solution:
     #                     count += 1
     #             if count == length:
     #                 return length
-
 
     # def lengthOfLongestSubstring(self, s: str) -> int:
     #     if not s:
@@ -67,14 +67,13 @@ class Solution:
     #             currStr += char
     #             i += 1
     #     return length
-        
-print(Solution().lengthOfLongestSubstring("abcabcbb")) #3
-print(Solution().lengthOfLongestSubstring("bbbbb")) #1
-print(Solution().lengthOfLongestSubstring("pwwkew")) #3
-print(Solution().lengthOfLongestSubstring("aab")) #2
-print(Solution().lengthOfLongestSubstring(" ")) #1
-print(Solution().lengthOfLongestSubstring("ab")) #2
-print(Solution().lengthOfLongestSubstring("a")) #1
-print(Solution().lengthOfLongestSubstring("dvdf")) #3
 
 
+print(Solution().lengthOfLongestSubstring("abcabcbb"))  # 3
+print(Solution().lengthOfLongestSubstring("bbbbb"))  # 1
+print(Solution().lengthOfLongestSubstring("pwwkew"))  # 3
+print(Solution().lengthOfLongestSubstring("aab"))  # 2
+print(Solution().lengthOfLongestSubstring(" "))  # 1
+print(Solution().lengthOfLongestSubstring("ab"))  # 2
+print(Solution().lengthOfLongestSubstring("a"))  # 1
+print(Solution().lengthOfLongestSubstring("dvdf"))  # 3

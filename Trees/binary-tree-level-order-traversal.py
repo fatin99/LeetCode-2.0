@@ -7,6 +7,7 @@
 
 from collections import deque
 
+
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         queue = deque()
@@ -24,4 +25,3 @@ class Solution:
                     queue.append(node.right)
             result.append(curr)
         return result
-        

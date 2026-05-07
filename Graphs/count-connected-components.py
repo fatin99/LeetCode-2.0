@@ -29,7 +29,7 @@ class Solution:
                             stack.append((current, neighbour, False))
 
         return comp
-    
+
     # Recursive
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
         adjMap = {}
@@ -50,16 +50,17 @@ class Solution:
                 for neighbour in adjMap[node]:
                     if neighbour != parent:
                         dfs(node, neighbour)
-            
+
             return
-        
+
         comp = 0
         for node in range(n):
             if not node in visited:
                 comp += 1
                 dfs(-1, node)
         return comp
-    
-n=5
-edges=[[0,1],[1,2],[3,4]]
+
+
+n = 5
+edges = [[0, 1], [1, 2], [3, 4]]
 print(Solution().countComponents(n, edges))

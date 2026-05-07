@@ -21,4 +21,3 @@ class Solution:
                 break
             current = current.right
         return current.val
-        

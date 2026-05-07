@@ -1,5 +1,6 @@
 import bisect
 
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         start = 0
@@ -21,5 +22,6 @@ class Solution:
         # Python Built-In bisect
         # index = bisect.bisect_left(nums, target)
         # return index if index < len(nums) and nums[index] == target else -1
-    
-print(Solution().search([-1,0,3,5,9,12], 2))
+
+
+print(Solution().search([-1, 0, 3, 5, 9, 12], 2))

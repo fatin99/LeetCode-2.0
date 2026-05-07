@@ -4,6 +4,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
     # def pre_order_traversal(self, node):
     #     if node is not None:
@@ -13,7 +14,7 @@ class Solution:
     #         if height_diff < -1 or height_diff > 1:
     #             raise(Exception)
     #         return 1 + max(left_height, right_height)
-    #     return 0 
+    #     return 0
 
     node_heights = {}
 
@@ -38,7 +39,7 @@ class Solution:
                     return False
                 self.node_heights[node] = 1 + max(leftHeight, rightHeight)
         return True
-    
+
     def isBalanced(self, root: Optional[TreeNode]) -> int:
         # try:
         #     self.pre_order_traversal(root)
@@ -47,7 +48,7 @@ class Solution:
         # return True
         return self.pre_order_traversal(root)
 
-        
+
 def to_binary_tree(items):
     if not items:
         return None
@@ -66,7 +67,8 @@ def to_binary_tree(items):
             q.append(node.right)
     return root
 
-root = to_binary_tree([1,2,3,4,5,6,None,8])
+
+root = to_binary_tree([1, 2, 3, 4, 5, 6, None, 8])
 print(Solution().isBalanced(root))
 #     1
 #   2   3

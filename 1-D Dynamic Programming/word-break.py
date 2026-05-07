@@ -15,7 +15,7 @@ class Solution:
                     return False
                 else:
                     for word in wordDict:
-                        if findWord(word, end, len(word)+end):
+                        if findWord(word, end, len(word) + end):
                             return True
                     memo[end] = False
                     return False
@@ -26,7 +26,7 @@ class Solution:
             if findWord(word, 0, len(word)):
                 return True
         return False
-    
+
     # Time: O(n⋅m⋅maxLen), n=len(wordDict)
     # Space: O(n⋅m)
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
@@ -44,8 +44,8 @@ class Solution:
                     return False
                 else:
                     for word in wordDict:
-                        if findWord(word, end, len(word)+end):
-                            memo[(end, len(word)+end)] = True
+                        if findWord(word, end, len(word) + end):
+                            memo[(end, len(word) + end)] = True
                             return True
                     memo[(start, end)] = False
                     return False
@@ -57,13 +57,13 @@ class Solution:
                 memo[(0, len(word))] = True
                 return True
         return False
-    
+
     # Time: O(n⋅W^2, W = maxLen-minLen+1, n=len(s)
     # Space: O(n⋅W)
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         wordDictSet = set(wordDict)
         minLen = 21
-        maxLen = 0                                                     
+        maxLen = 0
         for word in wordDict:
             minLen = min(minLen, len(word))
             maxLen = max(maxLen, len(word))
@@ -101,6 +101,7 @@ class Solution:
             currStr = currStr[:-1]
         return False
 
+
 # s = "leetcode"
 # wordDict = ["leet","code"]
 # print(Solution().wordBreak(s, wordDict))
@@ -126,6 +127,6 @@ class Solution:
 # print(Solution().wordBreak(s, wordDict))
 
 
-s ="cars"
-wordDict =["car","ca","rs"]
+s = "cars"
+wordDict = ["car", "ca", "rs"]
 print(Solution().wordBreak(s, wordDict))

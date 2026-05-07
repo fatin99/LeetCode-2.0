@@ -1,7 +1,8 @@
 class TrieNode:
-    def __init__(self, children = None, eow = False):
+    def __init__(self, children=None, eow=False):
         self.children = {}
         self.is_end_of_word = False
+
 
 class WordDictionary:
 
@@ -15,12 +16,12 @@ class WordDictionary:
                 curr = parent.children[char]
             else:
                 curr = TrieNode()
-                parent.children[char] = curr                
+                parent.children[char] = curr
             parent = curr
         curr.is_end_of_word = True
 
     # BFS
-    def search(self, word: str) -> bool:   
+    def search(self, word: str) -> bool:
         currNodes = [self.root]
         for char in word:
             newNodes = []
@@ -31,16 +32,16 @@ class WordDictionary:
                     newNodes.extend(list(curr.children.values()))
                     match = True
                 elif char in curr.children:
-                    newNodes.append(curr.children[char])   
-                    match = True            
+                    newNodes.append(curr.children[char])
+                    match = True
             if not match:
                 return False
             currNodes = newNodes
         for curr in currNodes:
-         if curr.is_end_of_word:
-            return True
+            if curr.is_end_of_word:
+                return True
         return False
-    
+
     # DFS
     def search(self, word: str) -> bool:
         def dfs(node, i):
@@ -52,7 +53,9 @@ class WordDictionary:
             if char in node.children:
                 return dfs(node.children[char], i + 1)
             return False
+
         return dfs(self.root, 0)
+
 
 wordDictionary = WordDictionary()
 print(wordDictionary.addWord("at"))
@@ -68,4 +71,3 @@ print(wordDictionary.search("a.d."))
 print(wordDictionary.search("b."))
 print(wordDictionary.search("a.d"))
 print(wordDictionary.search("."))
-      

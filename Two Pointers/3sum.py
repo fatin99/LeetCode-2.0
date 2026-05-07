@@ -7,7 +7,7 @@ class Solution:
         for i in range(0, len(nums)):
             currNum = nums[i]
             left = i + 1
-            right = len(nums)-1 
+            right = len(nums) - 1
             while left < right:
                 currLeft = nums[left]
                 currRight = nums[right]
@@ -23,8 +23,8 @@ class Solution:
                         result.append([currNum, currLeft, currRight])
                     left += 1
                     right -= 1
-        return result   
-    
+        return result
+
     # store previous 3sum to skip duplicates
     def threeSum(self, nums: list[int]) -> list[list[int]]:
         nums = sorted(nums)
@@ -33,19 +33,19 @@ class Solution:
         for i in range(0, len(nums)):
             currNum = nums[i]
             if currNum == prevNum:
-                continue    
+                continue
             left = i + 1
-            right = len(nums)-1 
+            right = len(nums) - 1
             prevLeft = None
             prevRight = None
-            while left < right:  
+            while left < right:
                 currLeft = nums[left]
                 currRight = nums[right]
                 if currLeft == prevLeft:
-                    left += 1    
+                    left += 1
                     continue
                 if currRight == prevRight:
-                    right -= 1  
+                    right -= 1
                     continue
                 currSum = currNum + currLeft + currRight
                 if currSum < 0:
@@ -59,13 +59,12 @@ class Solution:
                     prevRight = currRight
                     left += 1
                     right -= 1
-        return result   
-    
+        return result
 
 
-print(Solution().threeSum([-1,0,1,2,-1,-4]))
-print(Solution().threeSum([0,1,1]))
-print(Solution().threeSum([0,0,0]))
-print(Solution().threeSum([0,0,0,0]))
-print(Solution().threeSum([-2,0,1,1,2]))
-print(Solution().threeSum([1,2,0,1,0,0,0,0]))
+print(Solution().threeSum([-1, 0, 1, 2, -1, -4]))
+print(Solution().threeSum([0, 1, 1]))
+print(Solution().threeSum([0, 0, 0]))
+print(Solution().threeSum([0, 0, 0, 0]))
+print(Solution().threeSum([-2, 0, 1, 1, 2]))
+print(Solution().threeSum([1, 2, 0, 1, 0, 0, 0, 0]))

@@ -3,6 +3,8 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+
 class Solution:
 
     # Time: O(n)
@@ -25,10 +27,10 @@ class Solution:
     #         temp = curr.next
     #         curr.next = tail
     #         tail.next = temp
-            
+
     #         curr = curr.next
     #         curr = curr.next
-            
+
     #         nodeList.pop()
 
     #     if length / 2 + 1 == len(nodeList):
@@ -36,7 +38,7 @@ class Solution:
     #         curr.next = None
     #     else:
     #         curr.next = None
-    
+
     # Time: O(n^2)
     # Space: O(1)
     # def reorderList(self, head: Optional[ListNode]) -> None:
@@ -51,7 +53,7 @@ class Solution:
 
     #     front = head
     #     back = tail
-        
+
     #     currLength = length - 1
     #     while currLength > 0:
     #         temp = front.next
@@ -70,7 +72,7 @@ class Solution:
     #         back.next = None
     #     else:
     #         front.next = None
-            
+
     def reorderList(self, head: Optional[ListNode]) -> None:
         """
         Do not return anything, modify head in-place instead.
@@ -83,31 +85,31 @@ class Solution:
                 tail = tail.next
             if tail.next:
                 tail = tail.next
-        
-        
-        #reverse second half
+
+        # reverse second half
         front2 = None
         while mid:
             temp = mid.next
             mid.next = front2
             front2 = mid
             mid = temp
-        
-        front1 = head        
+
+        front1 = head
         # combine first and second half
         while front2 and front1:
             temp1 = front1.next
             temp2 = front2.next
             front1.next = front2
             front2.next = temp1
-            
-            if temp2 and not temp1:                
+
+            if temp2 and not temp1:
                 temp2.next = None
             if not temp2 and temp1:
                 temp1.next = None
             front2 = temp2
             front1 = temp1
-             
+
+
 def list_to_linked_list(items):
     if not items:
         return None
@@ -130,7 +132,7 @@ lst = [1, 2, 3, 4, 5]
 linked_list = list_to_linked_list(lst)
 print(Solution().reorderList(linked_list))
 
-lst = [1,2,3,4]
+lst = [1, 2, 3, 4]
 linked_list = list_to_linked_list(lst)
 print(Solution().reorderList(linked_list))
 print()

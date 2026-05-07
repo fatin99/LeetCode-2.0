@@ -5,7 +5,7 @@ class Solution:
     def numDecodings(self, s: str) -> int:
         if len(s) == 0:
             return 0
-        
+
         prevprev = 1  # --> Now, space is constant because we dont need entire dp array
         if s[0] == "0":
             return 0
@@ -14,28 +14,28 @@ class Solution:
         result = 0
         for i in range(2, len(s) + 1):
             result = 0
-            for j in range(i-2, i):
+            for j in range(i - 2, i):
                 if s[j] == "0" or (i - j) > 2:
                     continue
-                substring = s[j:i] # --> This costs O(n), not O(1) (╥﹏╥)
+                substring = s[j:i]  # --> This costs O(n), not O(1) (╥﹏╥)
                 if int(substring) > 26:
                     continue
                 if j == i - 1:
-                    result += prev       
+                    result += prev
                 if j == i - 2:
-                    result += prevprev    
+                    result += prevprev
             prevprev = prev
             prev = result
 
         return result
-    
+
     # # Bottom-up with Tabulation
     # Time: O(n) --> n is the length of s
     # Space: O(n)
     # def numDecodings(self, s: str) -> int:
     #     if len(s) == 0:
     #         return 0
-        
+
     #     dp = [1]
     #     if s[0] != "0":
     #         dp.append(1)
@@ -69,7 +69,7 @@ class Solution:
     # def numDecodings(self, s: str) -> int:
     #     if len(s) == 0:
     #         return 0
-        
+
     #     dp = [1]
     #     # E.g. given "123"
     #     # dp = [
@@ -90,11 +90,11 @@ class Solution:
 
     #     return dp[-1]
 
-    #Bottom-up with Tabulation
+    # Bottom-up with Tabulation
     # def numDecodings(self, s: str) -> int:
     #     if len(s) == 0:
     #         return 0
-        
+
     #     dp = [[] for _ in range(len(s) + 1)]
     #     dp[0] = [[""]]
 
@@ -114,14 +114,14 @@ class Solution:
 
     # #Bottom-up without Tabulation (saves memory but not enough)
     # def numDecodings(self, s: str) -> int:
-    #     dp = [[s[0]]]  
+    #     dp = [[s[0]]]
 
     #     for i in range(1, len(s)):
     #         newResult = []
     #         for codeSequence in dp:
     #             if s[i] != "0": # add single char s[i] to code sequence
     #                 newResult.append(codeSequence + [s[i]])
-                
+
     #             lastCode = codeSequence[-1] + s[i] # last element of code sequenc e + char s[i]
     #             if int(lastCode) > 26:
     #                 continue
@@ -131,61 +131,61 @@ class Solution:
 
     #     # print(result)
     #     return len(dp)
-    
+
     # Top-down with Memoization
     # def numDecodings(self, s: str) -> int:
-    #     memo = [[[s[0]]]]  
+    #     memo = [[[s[0]]]]
     #     def decode(n):
     #         if len(memo) > n:
     #             return memo[n]
-            
+
     #         code = decode(n-1)
-            
+
     #         res = []
     #         for codeSequence in code:
     #             if s[n] != "0": # add single char s[i] to code sequence
     #                 res.append(codeSequence + [s[n]])
-                
+
     #             lastCode = codeSequence[-1] + s[n] # last element of code sequenc e + char s[i]
     #             if int(lastCode) <= 26:
     #                 res.append(codeSequence[:-1]+[lastCode])
-            
+
     #         if len(memo) == n:
     #             memo.append(res)
-            
+
     #         return res
-        
+
     #     decodings = decode(len(s)-1)
     #     print(decodings)
     #     return len(decodings)
 
     # Top-down with Memoization
     # def numDecodings(self, s: str) -> int:
-    #     memo = [[[s[0]]]]  
+    #     memo = [[[s[0]]]]
     #     def decode(n):
     #         if len(memo) > n:
     #             return memo[n]
-            
+
     #         code = decode(n-1)
-            
+
     #         res = []
     #         for codeSequence in code:
     #             if s[n] != "0": # add single char s[i] to code sequence
     #                 res.append(codeSequence + [s[n]])
-                
+
     #             lastCode = codeSequence[-1] + s[n] # last element of code sequenc e + char s[i]
     #             if int(lastCode) <= 26:
     #                 res.append(codeSequence[:-1]+[lastCode])
-            
+
     #         if len(memo) == n:
     #             memo.append(res)
-            
+
     #         return res
-        
+
     #     decodings = decode(len(s)-1)
     #     print(decodings)
     #     return len(decodings)
-    
+
     # Top-down with DFS
     # def numDecodings(self, s: str) -> int:
     #     result = []
@@ -194,7 +194,7 @@ class Solution:
     #         if start == len(s):
     #             result.append(list(codeSequence))
     #             return
-            
+
     #         for end in range(start + 1, len(s) + 1):
     #             subStr = s[start:end]
     #             if subStr[0] == "0" or int(subStr) > 26:
@@ -205,6 +205,7 @@ class Solution:
 
     #     dfs(0, [])
     #     return len(result)
+
 
 # print(Solution().numDecodings("06"))
 # print(Solution().numDecodings("123"))

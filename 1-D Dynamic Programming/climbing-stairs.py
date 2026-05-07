@@ -8,14 +8,17 @@ class Solution:
 
     # Top-down with Memoization
     memo = [1, 1]
+
     def climbStairs(self, n):
-        if len(self.memo) > n: # check for the solution in the memo, if found, return it right away
+        if (
+            len(self.memo) > n
+        ):  # check for the solution in the memo, if found, return it right away
             return self.memo[n]
         res = self.climbStairs(n - 1) + self.climbStairs(n - 2)
         if len(self.memo) == n:
             self.memo.append(res)
         return res
-    
+
     # DP without list
     def climbStairs(self, n: int) -> int:
         one, two = 1, 1
@@ -26,17 +29,23 @@ class Solution:
             two = temp
 
         return one
-    
+
     # Fibonaccci sequence with matrix exponentiation
     def climbStairs(self, n: int) -> int:
         if n == 1:
             return 1
 
         def matrix_mult(A, B):
-            return [[A[0][0] * B[0][0] + A[0][1] * B[1][0],
-                     A[0][0] * B[0][1] + A[0][1] * B[1][1]],
-                    [A[1][0] * B[0][0] + A[1][1] * B[1][0],
-                     A[1][0] * B[0][1] + A[1][1] * B[1][1]]]
+            return [
+                [
+                    A[0][0] * B[0][0] + A[0][1] * B[1][0],
+                    A[0][0] * B[0][1] + A[0][1] * B[1][1],
+                ],
+                [
+                    A[1][0] * B[0][0] + A[1][1] * B[1][0],
+                    A[1][0] * B[0][1] + A[1][1] * B[1][1],
+                ],
+            ]
 
         def matrix_pow(M, p):
             result = [[1, 0], [0, 1]]
@@ -53,6 +62,7 @@ class Solution:
         M = [[1, 1], [1, 0]]
         result = matrix_pow(M, n)
         return result[0][0]
+
 
 print(Solution().climbStairs(5))
 

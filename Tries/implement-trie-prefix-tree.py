@@ -1,7 +1,8 @@
 class TrieNode:
-    def __init__(self, children = None, eow = False):
+    def __init__(self, children=None, eow=False):
         self.children = {}
         self.is_end_of_word = False
+
 
 class Trie:
 
@@ -15,7 +16,7 @@ class Trie:
                 curr = parent.children[char]
             else:
                 curr = TrieNode()
-                parent.children[char] = curr                
+                parent.children[char] = curr
             parent = curr
         curr.is_end_of_word = True
 
@@ -23,11 +24,11 @@ class Trie:
         curr = self.root
         for char in word:
             if char in curr.children:
-                curr = curr.children[char]                    
+                curr = curr.children[char]
             else:
                 return False
         return curr.is_end_of_word
-        
+
     def startsWith(self, prefix: str) -> bool:
         curr = self.root
         for char in prefix:
@@ -36,7 +37,6 @@ class Trie:
             else:
                 return False
         return True
-        
 
 
 # Your Trie object will be instantiated and called as such:

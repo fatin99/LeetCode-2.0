@@ -4,6 +4,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
     max_depth = 0
     # def in_order_traversal(self, node):
@@ -14,7 +15,7 @@ class Solution:
     #     node.left = node.right
     #     self.in_order_traversal(node.right)
     #     node.right = temp
-    
+
     # Recursive DFS
     def pre_order_traversal(self, node, depth):
         if node is not None:
@@ -22,8 +23,8 @@ class Solution:
             self.max_depth = max(depth, self.max_depth)
             self.pre_order_traversal(node.left, depth)
             self.pre_order_traversal(node.right, depth)
-            depth -= 1  
-    
+            depth -= 1
+
     # One line Solution
     # def maxDepth(self, root: Optional[TreeNode]) -> int:
     #     if not root:
@@ -67,6 +68,7 @@ class Solution:
     #     self.in_order_traversal(root)
     #     return root
 
+
 def build_tree_pre_order(nodes, f):
     val = next(nodes)
     if val == "x":
@@ -74,6 +76,7 @@ def build_tree_pre_order(nodes, f):
     left = build_tree_pre_order(nodes, f)
     right = build_tree_pre_order(nodes, f)
     return TreeNode(f(val), left, right)
+
 
 root = build_tree_pre_order(iter("1 2 4 x x 5 x x 3 6 x x 7 x x".split()), int)
 print(Solution().maxDepth(root))

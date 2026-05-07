@@ -7,5 +7,6 @@ class Solution:
                 return True
             seen.add(num)
         return False
+
     # Onr line solution
     # return len(set(nums)) < len(nums)

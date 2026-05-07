@@ -1,5 +1,6 @@
 import heapq
 
+
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
         heapq.heapify_max(stones)
@@ -14,4 +15,5 @@ class Solution:
         else:
             return stones[0]
 
-print(Solution().lastStoneWeight([2,7,4,1,8,1]))
+
+print(Solution().lastStoneWeight([2, 7, 4, 1, 8, 1]))

@@ -3,7 +3,8 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-        
+
+
 class Solution:
 
     # def in_order_traversal(self, current_p, current_q):
@@ -27,7 +28,7 @@ class Solution:
     #     except (Exception):
     #         return False
     #     return True
-    
+
     # def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
     #     if (not root and subRoot) or (not subRoot and root):
     #         return False
@@ -66,6 +67,7 @@ class Solution:
             return True
         return False
 
+
 def to_binary_tree(items):
     if not items:
         return None
@@ -84,6 +86,7 @@ def to_binary_tree(items):
             q.append(node.right)
     return root
 
-p = to_binary_tree([1,2,3])
-q = to_binary_tree([1,2,3])
+
+p = to_binary_tree([1, 2, 3])
+q = to_binary_tree([1, 2, 3])
 print(Solution().isSameTree(p, q))

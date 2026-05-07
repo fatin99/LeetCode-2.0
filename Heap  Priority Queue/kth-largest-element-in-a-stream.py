@@ -1,5 +1,6 @@
 import heapq
 
+
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
@@ -17,13 +18,12 @@ class KthLargest:
             return self.num_heap[0]
         else:
             return None
-        
 
 
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
 # param_1 = obj.add(val)
-heap = KthLargest(1,[])
+heap = KthLargest(1, [])
 print(heap.add(-3))
 print(heap.add(-2))
 print(heap.add(-4))

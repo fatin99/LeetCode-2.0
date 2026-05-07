@@ -6,7 +6,7 @@ class Solution:
     #         code += ' '.join(format(byte, '08b') for byte in text.encode('utf-8'))
     #         code += " _ "
     #     return code
-    
+
     # # non-ascii character as a delimiter.
     # def decode(self, s: str) -> List[str]:
     #     result = []
@@ -18,7 +18,7 @@ class Solution:
     #             continue
     #         text += ''.join(chr(int(binary, 2)))
     #     return result
-    
+
     # get the size of each str
     def encode(self, strs: List[str]) -> str:
         code = ""
@@ -26,7 +26,7 @@ class Solution:
             code += str(len(text))
             code += "+"
         code += "_"
-        
+
         for text in strs:
             code += text
         return code
@@ -37,9 +37,9 @@ class Solution:
         end = 0
         result = []
         text = ""
-        for i in range(0,len(s)):
+        for i in range(0, len(s)):
             if s[i] == "_":
-                end = i+1
+                end = i + 1
                 break
             if s[i] == "+":
                 lengths.append(int(text))
@@ -55,6 +55,7 @@ class Solution:
             result.append(text)
         return result
 
-code = Solution().encode(["Hello","World"])
+
+code = Solution().encode(["Hello", "World"])
 print(code)
 print(Solution().decode(code))

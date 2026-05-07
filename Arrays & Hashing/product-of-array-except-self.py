@@ -10,7 +10,7 @@ class Solution:
     #             hasZero = True
     #             continue
     #         product *= num
-        
+
     #     if hasZeroes:
     #         return [0] * len(nums)
 
@@ -23,10 +23,10 @@ class Solution:
     #                 result.append(0)
     #         else:
     #             result.append(int(product / num))
-        
+
     #     return result
-    
-    #Solution without division
+
+    # Solution without division
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         prefixProduct = [0] * len(nums)
         suffixProduct = [0] * len(nums)
@@ -36,7 +36,7 @@ class Solution:
             prefixIndex = i
             prefixNum *= nums[prefixIndex]
             prefixProduct[prefixIndex] = prefixNum
-            suffixIndex = len(nums)-1-i
+            suffixIndex = len(nums) - 1 - i
             suffixNum *= nums[suffixIndex]
             suffixProduct[suffixIndex] = suffixNum
 
@@ -46,7 +46,7 @@ class Solution:
             result.append(product)
         result.append(prefixProduct[-2])
         return result
-    
+
     # Solution using O(1) space
     def productExceptSelf(self, nums: list[int]) -> list[int]:
         n = len(nums)
@@ -61,4 +61,5 @@ class Solution:
             suffix *= nums[i]
         return result
 
-print(Solution().productExceptSelf([1,2,4,6]))
+
+print(Solution().productExceptSelf([1, 2, 4, 6]))
