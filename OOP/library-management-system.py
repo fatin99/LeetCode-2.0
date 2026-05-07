@@ -1,15 +1,3 @@
-class BookFormat(Enum):
-    HARDCOVER, PAPERBACK, AUDIO_BOOK, EBOOK, NEWSPAPER, MAGAZINE, JOURNAL = (
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-    )
-
-
 class BookStatus(Enum):
     AVAILABLE, RESERVED, LOANED, LOST = 1, 2, 3, 4
 
@@ -20,24 +8,6 @@ class ReservationStatus(Enum):
 
 class AccountStatus(Enum):
     ACTIVE, CLOSED, CANCELED, BLACKLISTED, NONE = 1, 2, 3, 4, 5
-
-
-class Address:
-    def __init__(self, street, city, state, zip_code, country):
-        self.__street_address = street
-        self.__city = city
-        self.__state = state
-        self.__zip_code = zip_code
-        self.__country = country
-
-
-class Person(ABC):
-    def __init__(self, name, address, email, phone):
-        self.__name = name
-        self.__address = address
-        self.__email = email
-        self.__phone = phone
-
 
 class Constants:
     self.MAX_BOOKS_ISSUED_TO_A_USER = 5
@@ -168,8 +138,8 @@ class BookReservation:
         self.__member_id = member_id
 
 
-def fetch_reservation_details(self, barcode):
-    None
+    def fetch_reservation_details(self, barcode):
+        None
 
 
 class BookLending:
@@ -181,12 +151,12 @@ class BookLending:
         self.__member_id = member_id
 
 
-def lend_book(self, barcode, member_id):
-    None
+    def lend_book(self, barcode, member_id):
+        None
 
 
-def fetch_lending_details(self, barcode):
-    None
+    def fetch_lending_details(self, barcode):
+        None
 
 
 class Fine:
@@ -196,8 +166,8 @@ class Fine:
         self.__member_id = member_id
 
 
-def collect_fine(self, member_id, days):
-    None
+    def collect_fine(self, member_id, days):
+        None
 
 
 from abc import ABC, abstractmethod
@@ -225,14 +195,14 @@ class Catalog(Search):
         self.__book_publication_dates = {}
 
 
-def search_by_title(self, query):
-    # return all books containing the string query in their title.
-    return self.__book_titles.get(query)
+    def search_by_title(self, query):
+        # return all books containing the string query in their title.
+        return self.__book_titles.get(query)
 
 
-def search_by_author(self, query):
-    # return all books containing the string query in their author's name.
-    return self.__book_authors.get(query)
+    def search_by_author(self, query):
+        # return all books containing the string query in their author's name.
+        return self.__book_authors.get(query)
 
 
 from abc import ABC, abstractmethod
@@ -276,14 +246,14 @@ class BookItem(Book):
         self.__placed_at = placed_at
 
 
-def checkout(self, member_id):
-    if self.get_is_reference_only():
-        print("self book is Reference only and can't be issued")
-        return False
-    if not BookLending.lend_book(self.get_bar_code(), member_id):
-        return False
-    self.update_book_item_status(BookStatus.LOANED)
-    return True
+    def checkout(self, member_id):
+        if self.get_is_reference_only():
+            print("self book is Reference only and can't be issued")
+            return False
+        if not BookLending.lend_book(self.get_bar_code(), member_id):
+            return False
+        self.update_book_item_status(BookStatus.LOANED)
+        return True
 
 
 class Rack:
