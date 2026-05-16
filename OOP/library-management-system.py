@@ -24,8 +24,8 @@ class Account(ABC):
         self.__status = status
         self.__person = person
 
-        def reset_password(self):
-            None
+    def reset_password(self):
+        None
 
 
 class Librarian(Account):
