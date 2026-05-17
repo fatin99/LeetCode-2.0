@@ -1,6 +1,8 @@
 class Solution:
     # O(nlogn)
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+    def insert(
+        self, intervals: List[List[int]], newInterval: List[int]
+    ) -> List[List[int]]:
         result = []
         intervals.append(newInterval)
         intervals.sort()
@@ -15,12 +17,14 @@ class Solution:
                 prev = curr
             else:
                 prev[1] = max(prevEnd, currEnd)
-            if i == len(intervals)-1:
+            if i == len(intervals) - 1:
                 result.append(prev)
         return result
-    
-    #O(n)
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+
+    # O(n)
+    def insert(
+        self, intervals: List[List[int]], newInterval: List[int]
+    ) -> List[List[int]]:
         res = []
         i = 0
         inserted = False
@@ -51,19 +55,20 @@ class Solution:
             res.append(newInterval)
 
         return res
-    
-intervals = [[1,3],[6,9]]
-newInterval = [2,5]
+
+
+intervals = [[1, 3], [6, 9]]
+newInterval = [2, 5]
 print(Solution().insert(intervals, newInterval))
 
-intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
-newInterval = [4,8]
+intervals = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
+newInterval = [4, 8]
 print(Solution().insert(intervals, newInterval))
 
-intervals = [[1,5]]
-newInterval = [2,3]
+intervals = [[1, 5]]
+newInterval = [2, 3]
 print(Solution().insert(intervals, newInterval))
 
-intervals = [[1,5]]
-newInterval = [6,8]
+intervals = [[1, 5]]
+newInterval = [6, 8]
 print(Solution().insert(intervals, newInterval))

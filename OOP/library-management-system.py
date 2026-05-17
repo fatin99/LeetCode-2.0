@@ -9,6 +9,7 @@ class ReservationStatus(Enum):
 class AccountStatus(Enum):
     ACTIVE, CLOSED, CANCELED, BLACKLISTED, NONE = 1, 2, 3, 4, 5
 
+
 class Constants:
     self.MAX_BOOKS_ISSUED_TO_A_USER = 5
     self.MAX_LENDING_DAYS = 10
@@ -137,7 +138,6 @@ class BookReservation:
         self.__book_item_barcode = book_item_barcode
         self.__member_id = member_id
 
-
     def fetch_reservation_details(self, barcode):
         None
 
@@ -150,10 +150,8 @@ class BookLending:
         self.__book_item_barcode = book_item_barcode
         self.__member_id = member_id
 
-
     def lend_book(self, barcode, member_id):
         None
-
 
     def fetch_lending_details(self, barcode):
         None
@@ -164,7 +162,6 @@ class Fine:
         self.__creation_date = creation_date
         self.__book_item_barcode = book_item_barcode
         self.__member_id = member_id
-
 
     def collect_fine(self, member_id, days):
         None
@@ -194,11 +191,9 @@ class Catalog(Search):
         self.__book_subjects = {}
         self.__book_publication_dates = {}
 
-
     def search_by_title(self, query):
         # return all books containing the string query in their title.
         return self.__book_titles.get(query)
-
 
     def search_by_author(self, query):
         # return all books containing the string query in their author's name.
@@ -244,7 +239,6 @@ class BookItem(Book):
         self.__date_of_purchase = date_of_purchase
         self.__publication_date = publication_date
         self.__placed_at = placed_at
-
 
     def checkout(self, member_id):
         if self.get_is_reference_only():
