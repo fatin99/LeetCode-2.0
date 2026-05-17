@@ -2,7 +2,7 @@ class Solution:
     def getSum(self, a: int, b: int) -> int:
         print(f"a: {a:32b}")
         print(f"b: {b:32b}")
-        mask = (1 << 32) - 1  # any_value & mask  →  keeps only the bottom 32 bits
+        mask = (1 << 32) - 1  # any_value & mask  =  keeps only the bottom 32 bits
         while b != 0:
             # AND (&)  =  finds WHERE a carry happens,
             # << 1     =  shifts the carry into its proper column (shift left by 1)
