@@ -13,7 +13,6 @@ class Solution:
             else:
                 char_map[char] = 1
 
-        substr = ""
         start = 0
         for end in range(1, len(s) + 1):
             newChar = s[end - 1]
@@ -30,10 +29,10 @@ class Solution:
                             else:
                                 break
                         start += 1
-            substr = s[start:end]
+            
             if all(value <= 0 for value in char_map.values()):
-                if res == "" or len(substr) < len(res):
-                    res = substr
+                if res == "" or end-start < len(res):
+                    res = s[start:end]
         return res
 
 
