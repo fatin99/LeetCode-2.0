@@ -19,8 +19,8 @@ class Solution:
             for j in range(1, m):
                 if matrix[i][j] == 0:
                     matrix[i][0] = 0
-                    matrix[0][j] = 0            
-        
+                    matrix[0][j] = 0
+
         for i in range(n):
             if matrix[i][0] == 0 and i >= 1:
                 for j in range(1, m):
@@ -44,7 +44,7 @@ class Solution:
 
 # matrix = [[1,1,1],[1,0,1],[1,1,1]]
 # Solution().setZeroes(matrix)
-matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+matrix = [[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]]
 Solution().setZeroes(matrix)
 # matrix = [[1,2,3,4],[5,0,7,8],[0,10,11,12],[13,14,15,0]]
 # Solution().setZeroes(matrix)
