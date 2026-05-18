@@ -12,7 +12,7 @@ class Solution:
                 char_map[char] += 1
             else:
                 char_map[char] = 1
-        
+
         count = 0
         start = 0
         for end in range(1, len(s) + 1):
@@ -21,7 +21,7 @@ class Solution:
                 char_map[newChar] -= 1
                 if char_map[newChar] <= 0:
                     count += 1
-                
+
                 if char_map[newChar] <= 0:  # reduce size of window
                     while count >= len(char_map):
                         if s[start] in char_map:
@@ -33,7 +33,7 @@ class Solution:
                         start += 1
 
             if count == len(char_map):
-                if res == "" or end-start < len(res):
+                if res == "" or end - start < len(res):
                     res = s[start:end]
         return res
 
