@@ -19,15 +19,13 @@ class Solution:
             newChar = s[end - 1]
             if newChar in char_map:
                 char_map[newChar] -= 1
-                if char_map[newChar] <= 0:
+                if char_map[newChar] == 0:
                     count += 1
-
                 if char_map[newChar] <= 0:  # reduce size of window
-                    while count >= len(char_map):
+                    while count == len(char_map):
                         if s[start] in char_map:
                             if char_map[s[start]] < 0:
                                 char_map[s[start]] += 1
-                                count -= 1
                             else:
                                 break
                         start += 1
