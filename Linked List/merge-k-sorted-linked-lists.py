@@ -42,13 +42,13 @@ class Solution:
 
         while len(lists) > 1:
             mergedLists = []
-            for i in range(0, len(lists), 2):
-                l1 = lists[i]
-                l2 = lists[i + 1] if (i + 1) < len(lists) else None
 
+            for i in range(0, len(lists), 2):
                 head = ListNode(0)
                 curr = head
 
+                l1 = lists[i]
+                l2 = lists[i + 1] if (i + 1) < len(lists) else None
                 while l1 and l2:
                     if l1.val < l2.val:
                         curr.next = l1
@@ -58,6 +58,7 @@ class Solution:
                         l2 = l2.next
                     curr = curr.next
                 curr.next = l1 if l1 else l2
+
                 mergedLists.append(head.next)
 
             lists = mergedLists
