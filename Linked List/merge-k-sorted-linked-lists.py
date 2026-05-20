@@ -5,6 +5,7 @@ class ListNode:
 
 
 class Solution:
+    # O(n * k) time and O(1) space
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         head = ListNode(0)
         curr = head
