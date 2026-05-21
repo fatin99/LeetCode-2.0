@@ -6,7 +6,6 @@ class TreeNode:
 
 
 class Solution:
-    node_heights = {}
     max_diameter = 0
 
     # Recursive DFS
