@@ -35,9 +35,9 @@ class Solution:
         curr = curr.children[char]
         if curr.is_end_of_word:
             self.res.add(curr.path)
-
         if not curr.children:
             return
+
         self.seen.add((x, y))
 
         if x > 0:
