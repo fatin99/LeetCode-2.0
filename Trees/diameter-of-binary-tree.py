@@ -41,7 +41,7 @@ class Solution:
         return self.max_diameter
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        self.max_height = 0
+        self.max_diameter = 0
         self.node_heights = {None: 0}
         self.pre_order_traversal(root)
         return self.max_diameter
