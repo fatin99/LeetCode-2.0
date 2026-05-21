@@ -5,9 +5,11 @@ class MedianFinder:
 
     def __init__(self):
         self.size = 0
+        # Space: O(n)
         self.maxHeap = []
         self.minHeap = []
 
+    # Time: O(m∗logn)
     def addNum(self, num: int) -> None:
         if len(self.minHeap) > 0 and num > self.minHeap[0]:
             heapq.heappush(self.minHeap, num)
@@ -24,6 +26,7 @@ class MedianFinder:
 
         self.size += 1
 
+    # Time: O(m)
     def findMedian(self) -> float:
         if self.size % 2 == 0:
             return (self.minHeap[0] + self.maxHeap[0]) / 2
