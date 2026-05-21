@@ -6,14 +6,16 @@ class TreeNode:
 
 
 class Solution:
+    node_heights = {}
     max_diameter = 0
 
+    # Recursive DFS
     # def pre_order_traversal(self, node):
-    #     if node is None:
+    #     if not node:
     #         return 0
     #     left_height = self.pre_order_traversal(node.left)
     #     right_height = self.pre_order_traversal(node.right)
-    #     self.max_diameter = max(self.max_diameter, left_height+right_height)
+    #     self.max_diameter = max(self.max_diameter, left_height + right_height)
     #     return 1 + max(left_height, right_height)
 
     # Iterative DFS
@@ -22,7 +24,6 @@ class Solution:
     def pre_order_traversal(self, node):
         stack = [node]
         self.node_heights = {None: 0}
-        maxDiameter = 0
 
         while stack:
             node = stack[-1]
@@ -33,23 +34,18 @@ class Solution:
                 stack.append(node.right)
             else:
                 node = stack.pop()
-                print(f"node: {node.val if node else None}")
-                leftHeight = self.node_heights[node.left]
-                rightHeight = self.node_heights[node.right]
-                self.node_heights[node] = 1 + max(leftHeight, rightHeight)
-                maxDiameter = max(leftHeight + rightHeight, maxDiameter)
+                left_height = self.node_heights[node.left]
+                right_height = self.node_heights[node.right]
+                self.node_heights[node] = 1 + max(left_height, right_height)
+                self.max_diameter = max(left_height + right_height, self.max_diameter)
 
-        return maxDiameter
+        return self.max_diameter
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.max_height = 0
         self.node_heights = {None: 0}
-        # self.pre_order_traversal(root)
-        # # for node, (height, diameter) in self.node_heights.items():
-        # #     print(f"node: {node.val if node else None}, height: {height}, diameter: {diameter}")
-        #     self.max_diameter = max(self.max_diameter, diameter)
-        # return self.max_height
-        return self.pre_order_traversal(root)
+        self.pre_order_traversal(root)
+        return self.max_diameter
 
 
 def to_binary_tree(items):
