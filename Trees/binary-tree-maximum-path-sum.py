@@ -62,22 +62,26 @@ class Solution:
         return max_diameter
 
 
-def to_binary_tree(items):
-    if not items:
-        return None
+from collections import deque
 
-    it = iter(items)
-    root = TreeNode(next(it))
-    q = [root]
-    for node in q:
-        val = next(it, None)
-        if val is not None:
-            node.left = TreeNode(val)
-            q.append(node.left)
-        val = next(it, None)
-        if val is not None:
-            node.right = TreeNode(val)
-            q.append(node.right)
+
+def to_binary_tree(data):
+    if not data:
+        return None
+    root = TreeNode(data[0])
+    queue = deque([root])
+
+    count = 0
+    while queue and count < len(data):
+        node = queue.popleft()
+        for child in ("left", "right"):
+            count += 1
+            if count >= len(data):
+                return root
+            if data[count] is not None:
+                child_node = TreeNode(data[count])
+                setattr(node, child, child_node)
+                queue.append(child_node)
     return root
 
 
