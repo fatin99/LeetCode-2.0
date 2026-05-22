@@ -8,6 +8,7 @@ class TreeNode:
 
 class Solution:
     # Iterative post-order traversal
+    # O(n) time and O(n) space
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         stack = [(root, root.val)]
         max_diameter = None
@@ -23,16 +24,11 @@ class Solution:
 
             else:
                 stack.pop()
-                left_height = node_heights[node.left]
-                right_height = node_heights[node.right]
-                curr_height = node.val + max(left_height, right_height)
-                node_heights[node] = max(curr_height, node.val)
+                left_height = max(node_heights[node.left], 0)
+                right_height = max(node_heights[node.right], 0)
+                node_heights[node] = node.val + max(left_height, right_height)
 
-                diameter = node.val
-                if left_height >= 0:
-                    diameter += left_height
-                if right_height >= 0:
-                    diameter += right_height
+                diameter = node.val + left_height + right_height
                 if max_diameter == None:
                     max_diameter = diameter
                 max_diameter = max(diameter, max_diameter)
