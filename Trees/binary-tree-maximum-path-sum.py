@@ -10,17 +10,17 @@ class Solution:
     # Iterative post-order traversal
     # O(n) time and O(n) space
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        stack = [(root, root.val)]
+        stack = [root]
         max_diameter = None
         node_heights = {None: 0}
 
         while stack:
-            node, path_sum = stack[-1]
+            node = stack[-1]
 
             if node.left and node.left not in node_heights:
-                stack.append((node.left, path_sum + node.left.val))
+                stack.append(node.left)
             elif node.right and node.right not in node_heights:
-                stack.append((node.right, path_sum + node.right.val))
+                stack.append(node.right)
 
             else:
                 stack.pop()
