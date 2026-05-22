@@ -7,13 +7,32 @@ class TreeNode:
 
 
 class Solution:
-    # Iterative post-order traversal
-    # O(n) time and O(n) space
+    # Recursive post-order traversal
+    # O(n) time and O(h) space (recursion stack only)
+    # def post_order_traversal(self, node: Optional[TreeNode]) -> int:
+    #     if not node:
+    #         return 0
+
+    #     left_height = max(self.post_order_traversal(node.left), 0)
+    #     right_height = max(self.post_order_traversal(node.right), 0)
+
+    #     diameter = node.val + left_height + right_height
+    #     if self.max_diameter == None:
+    #         self.max_diameter = diameter
+    #     self.max_diameter = max(diameter, self.max_diameter)
+
+    #     return node.val + max(left_height, right_height)
+
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        # self.max_diameter = None
+        # self.post_order_traversal(root)
+
+        # Iterative post-order traversal
+        # O(n) time and O(n) space for node_heights
+        # O(h) space if we remove entries of child nodes
         stack = [root]
         max_diameter = None
         node_heights = {None: 0}
-
         while stack:
             node = stack[-1]
 
@@ -27,6 +46,13 @@ class Solution:
                 left_height = max(node_heights[node.left], 0)
                 right_height = max(node_heights[node.right], 0)
                 node_heights[node] = node.val + max(left_height, right_height)
+
+                # children's heights are now consumed
+                # we can free them to save space and get to O(h)
+                if node.left:
+                    del node_heights[node.left]
+                if node.right:
+                    del node_heights[node.right]
 
                 diameter = node.val + left_height + right_height
                 if max_diameter == None:
