@@ -1,0 +1,28 @@
+#separator:tab
+#html:false
+#tags column:3
+What is recursion?	A method of solving a problem where the solution depends on solutions to smaller instances of the same problem.	recursion basics
+What are the two essential parts of every recursive function?	1) A base case (or cases) that stops recursion. 2) Logic that breaks the problem into a smaller subproblem and invokes the recursive call.	recursion basics
+What are the Fibonacci sequence's base cases and recurrence?	Base: fib(0)=0, fib(1)=1. Recurrence: fib(i) = fib(i-1) + fib(i-2).	recursion basics
+Name four well-known algorithms that use recursion heavily.	Binary search, merge sort, tree traversal, depth-first search.	recursion basics
+What happens if you forget the base case in a recursive function?	Infinite recursion — eventually causing a stack overflow.	interview-tips
+Why is recursion useful for permutation and tree problems?	It naturally explores all combinations / all branches by reducing to smaller subproblems.	interview-tips
+Recursion implicitly uses what data structure?	A call stack. So any recursive solution can be rewritten iteratively using an explicit stack.	interview-tips
+Why is recursion typically not O(1) space?	The call stack consumes memory proportional to recursion depth — unless tail-call optimization (TCO) is available.	interview-tips
+What is tail-call optimization (TCO)?	An optimization where a recursive call in tail position reuses the current stack frame, avoiding stack growth.	interview-tips
+What's Python's default recursion depth limit?	1000.	interview-tips
+How many base cases should a recursive function have?	Enough to cover all possible invocations within the input range. If the function calls fn(n-2), you need 2 base cases; if only fn(n-1), one suffices.	interview-tips
+Name three corner cases to consider for recursion problems.	n = 0, n = 1, and ensuring enough base cases for all possible invocations.	interview-tips
+What is memoization?	Caching results of previously-computed inputs so repeated calls return immediately — converting exponential recursion into polynomial time.	techniques
+Why does memoization help with naive Fibonacci?	Without it, fib(3) and other subproblems get recomputed many times. Memoization reduces it from exponential to O(n).	techniques
+Name three essential recursion practice questions.	Generate Parentheses, Combinations, Subsets.	practice
+Name three recommended recursion practice questions.	Any of: Letter Combinations of a Phone Number, Subsets II, Permutations, Sudoku Solver, Strobogrammatic Number II.	practice
+What is backtracking?	A recursive technique that incrementally builds candidates and abandons (backtracks from) a partial candidate as soon as it cannot lead to a valid solution.	techniques
+Standard backtracking template — what are the three steps inside the recursive function?	1) Check the base case / valid solution. 2) For each choice: make the choice → recurse → undo the choice. 3) Prune invalid branches early.	techniques
+Difference between recursion and iteration.	Recursion expresses an algorithm via smaller instances of itself; iteration uses explicit loops and state. Recursion uses stack space; iteration may not.	recursion basics
+Time complexity of naive recursive Fibonacci.	O(2^n) — exponential due to repeated subproblem computation.	time-complexity
+Time complexity of memoized Fibonacci.	O(n) time and O(n) space.	time-complexity
+Why is tail recursion preferred where supported?	The compiler can reuse the current stack frame for the call — constant stack space, equivalent to iteration.	techniques
+Number of permutations of n distinct elements.	n!	techniques
+Number of subsets of an n-element set.	2^n	techniques
+How does recursion relate to divide-and-conquer?	Divide-and-conquer recursively splits a problem into independent subproblems, solves them, and combines results — e.g. merge sort, quicksort, binary search.	recursion basics

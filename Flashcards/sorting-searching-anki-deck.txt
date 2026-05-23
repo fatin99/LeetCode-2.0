@@ -1,0 +1,39 @@
+#separator:tab
+#html:false
+#tags column:3
+What is sorting?	Rearranging elements of a sequence into order (numerical or lexicographical, ascending or descending).	sorting basics
+Should you implement sorting algorithms from scratch in interviews?	No — use your language's built-in sort. Just know the time/space complexities.	sorting basics
+How does binary search work conceptually?	Compare the target with the middle element to decide whether to recurse on the left or right half; repeat until found or the range is empty.	sorting basics
+Time / space complexity of Bubble sort.	Time O(n²), Space O(1).	time-complexity
+Time / space complexity of Insertion sort.	Time O(n²), Space O(1).	time-complexity
+Time / space complexity of Selection sort.	Time O(n²), Space O(1).	time-complexity
+Time / space complexity of Quicksort.	Time O(n log n) average, Space O(log n).	time-complexity
+Time / space complexity of Mergesort.	Time O(n log n), Space O(n).	time-complexity
+Time / space complexity of Heapsort.	Time O(n log n), Space O(1).	time-complexity
+Time / space complexity of Counting sort (k distinct values).	Time O(n + k), Space O(k).	time-complexity
+Time / space complexity of Radix sort.	Time O(nk), Space O(n + k).	time-complexity
+Time complexity of binary search.	O(log n)	time-complexity
+What is Python 3.11+'s default sort algorithm?	Powersort (replaced Timsort).	interview-tips
+What sorting algorithms does Java use by default?	Timsort (for objects), Dual-Pivot Quicksort (for primitives).	interview-tips
+Name four corner cases for sort/search problems.	Empty sequence, sequence with one element, sequence with two elements, sequence with duplicate elements.	interview-tips
+If the input is sorted (or partially sorted), what technique should come to mind first?	Binary search.	techniques
+When can you use counting sort effectively?	When the range of input values is known and small — it's a non-comparison sort. Example: H-Index.	techniques
+Name two essential sorting/searching practice questions.	Binary Search, Search in Rotated Sorted Array.	practice
+Name three recommended sorting/searching practice questions.	Any of: Kth Smallest Element in a Sorted Matrix, Search a 2D Matrix, Kth Largest Element in an Array, Find Minimum in Rotated Sorted Array, Median of Two Sorted Arrays.	practice
+What is a stable sort?	One that preserves the relative order of records with equal keys.	algorithms
+Is quicksort stable?	No.	algorithms
+Is mergesort stable?	Yes.	algorithms
+Worst-case time complexity of quicksort, and what triggers it?	O(n²) — happens when the pivot is repeatedly the smallest or largest element (e.g. already-sorted input with naive pivot choice).	algorithms
+Why is heapsort's space complexity O(1)?	It sorts in place by repeatedly extracting from a max-heap built within the input array.	algorithms
+Why isn't counting sort comparison-based?	It uses the values themselves as indices into a count array — no comparisons needed.	algorithms
+When is counting sort impractical?	When the value range k is much larger than n — space becomes prohibitive.	algorithms
+What is the theoretical lower bound for comparison-based sorts?	Ω(n log n).	algorithms
+Common bug: writing `mid = (lo + hi) / 2` — what's the problem?	Integer overflow for large lo, hi. Prefer `mid = lo + (hi - lo) / 2`.	techniques
+Binary-search variant: how to find the leftmost occurrence of a target?	When `arr[mid] >= target`, move `hi = mid - 1`; continue until lo > hi, then check `arr[lo]`.	techniques
+When does binary search apply beyond sorted arrays?	Any monotonic predicate — "smallest x such that f(x) is true" works whenever f is monotonic in x.	techniques
+Difference between `bisect_left` and `bisect_right` in Python.	`bisect_left` returns the insertion point before equal elements; `bisect_right` returns the insertion point after equal elements.	techniques
+Quickselect — what problem does it solve and at what cost?	Finds the kth smallest/largest element in O(n) average time (O(n²) worst case) using partition (like quicksort) without fully sorting.	algorithms
+What is bucket sort?	A sorting algorithm that distributes elements into a number of buckets, sorts each bucket individually (e.g. with insertion sort), and concatenates the results.	algorithms
+Average-case time complexity of bucket sort.	Θ(n + k) where k is the number of buckets — assuming approximately uniform distribution.	algorithms
+Worst-case time complexity of bucket sort.	O(n²) — occurs when all elements fall into a single bucket.	algorithms
+When is bucket sort a good fit?	When input is approximately uniformly distributed over a known range — e.g. floating-point numbers in [0, 1).	algorithms

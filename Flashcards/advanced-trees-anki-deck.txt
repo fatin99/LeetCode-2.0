@@ -1,0 +1,17 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a Fenwick tree (Binary Indexed Tree, BIT)?	An array-based data structure that supports prefix-sum range queries and point updates in O(log n) using bitwise indexing tricks.	fenwick
+Time complexity: Fenwick tree range sum query.	O(log n)	fenwick
+Time complexity: Fenwick tree point update.	O(log n)	fenwick
+How does a Fenwick tree determine parent/child indices?	Through bitwise operations on the binary representation of the index — typically using `i & -i` to isolate the lowest set bit.	fenwick
+What does each Fenwick-tree array element store?	A precomputed sum over a range of the underlying values; the exact range is determined by the lowest set bit of the index.	fenwick
+Why use a Fenwick tree instead of a prefix-sum array?	Prefix sums give O(1) queries but O(n) updates. A Fenwick tree balances both at O(log n) — better when updates are frequent.	fenwick
+Space complexity of a Fenwick tree for n elements.	O(n)	fenwick
+What is a Segment tree?	A tree data structure for storing intervals/segments — supports range queries (sum, min, max, gcd, etc.) and point or range updates in O(log n).	segment
+Time complexity: Segment tree range query and update.	O(log n) for both.	segment
+When prefer a segment tree over a Fenwick tree?	When the aggregate function isn't easily invertible (e.g. min, max, gcd) or when range updates with lazy propagation are needed. Fenwick is simpler but more limited.	segment
+What is "lazy propagation" in a segment tree?	An optimization where range updates are deferred and stored at internal nodes; updates are pushed down only when queries require them. Makes range update + range query both O(log n).	segment
+Space complexity of a segment tree for n elements.	O(n) — typically allocated as a 4n array to safely hold the implicit tree.	segment
+Common interview problems where Fenwick / segment trees shine.	Range Sum Query — Mutable, Count of Smaller Numbers After Self, counting inversions, Range Minimum Query with updates.	practice
+Why aren't Fenwick / segment trees taught in most "basic" interview prep?	They're advanced and rarely required in junior-to-mid interviews. Mainly useful for competitive programming or specialist roles (e.g. database internals, range-query systems).	interview-tips

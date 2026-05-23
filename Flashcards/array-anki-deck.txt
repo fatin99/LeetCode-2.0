@@ -1,0 +1,43 @@
+#separator:tab
+#html:false
+#tags column:3
+What is an array?	A data structure that holds values of the same type at contiguous memory locations.	array basics
+What are the two main things we usually care about when working with arrays?	The position/index of an element and the element itself.	array basics
+Why are arrays generally easier to work with in Python, JavaScript, Ruby, and PHP?	Because the array (list) size is dynamic — you don't need to declare a fixed size upfront.	array basics
+List two advantages of arrays.	1) Store multiple elements of the same type under one variable name. 2) Fast element access by index (O(1)).	array basics
+Why is element access in an array faster than in a linked list?	Arrays allow O(1) access by index; linked lists require traversal from the head.	array basics
+What is the main disadvantage of inserting or removing elements in the middle of an array?	All subsequent elements must be shifted, making the operation O(n).	array basics
+What happens when an insertion would exceed the size of a fixed-size array?	A new (larger) array must be allocated and all existing elements copied over — this takes O(n).	array basics
+Define a "subarray".	A range of contiguous values within an array.	array terminology
+Given [2, 3, 6, 1, 5, 4], is [3, 6, 1] a subarray?	Yes — the values are contiguous in the original array.	array terminology
+Given [2, 3, 6, 1, 5, 4], is [3, 1, 5] a subarray?	No — the values are not contiguous in the original array.	array terminology
+Define a "subsequence".	A sequence derived from the original by deleting some or no elements without changing the order of the remaining elements.	array terminology
+Given [2, 3, 6, 1, 5, 4], is [3, 1, 5] a subsequence?	Yes — the elements appear in that relative order in the original array.	array terminology
+Given [2, 3, 6, 1, 5, 4], is [3, 5, 1] a subsequence?	No — the order differs from the original array.	array terminology
+Time complexity: Access an element by index.	O(1)	time-complexity
+Time complexity: Search in an unsorted array.	O(n)	time-complexity
+Time complexity: Search in a sorted array.	O(log n) — via binary search.	time-complexity
+Time complexity: Insert an element at an arbitrary position.	O(n) — subsequent elements must be shifted right.	time-complexity
+Time complexity: Insert an element at the end of the array.	O(1) — no shifting required (amortized for dynamic arrays).	time-complexity
+Time complexity: Remove an element from an arbitrary position.	O(n) — subsequent elements must be shifted left.	time-complexity
+Time complexity: Remove an element from the end of the array.	O(1) — no shifting required.	time-complexity
+What should you clarify about duplicate values during an array interview?	Whether duplicates are allowed, and whether their presence makes the problem easier or harder.	interview-tips
+What is the time complexity cost of slicing or concatenating arrays, and how can you avoid it?	Slicing/concatenation is typically O(n). Use start and end indices to demarcate a subarray instead.	interview-tips
+Name four common corner cases to test for array problems.	1) Empty sequence. 2) Sequence with 1 or 2 elements. 3) Sequence with repeated elements. 4) Sequence with duplicated values.	interview-tips
+What is the sliding window technique?	A two-pointer technique where both pointers move in the same direction and never overtake each other, ensuring each value is visited at most twice — O(n) overall.	techniques
+How does the "two pointers" technique differ from "sliding window"?	Two pointers is more general — the pointers can cross each other, and can even operate on different arrays.	techniques
+Give an example use case for using two pointers across two arrays.	Merging two sorted arrays — one pointer per array, advancing whichever points to the smaller element.	techniques
+When might "traversing from the right" be a useful technique?	When the problem is easier to solve scanning right-to-left — e.g. Daily Temperatures, Number of Visible People in a Queue.	techniques
+If an array is sorted (or partially sorted), what technique should you consider first?	Binary search — and expect the interviewer wants a solution faster than O(n).	techniques
+When does sorting the array as a first step help?	When sorting simplifies the problem AND the original element order does not need to be preserved (e.g. Merge Intervals, Non-overlapping Intervals).	techniques
+When is precomputation (prefix/suffix sum or product) useful?	For problems involving summation or multiplication over subarrays — e.g. Product of Array Except Self, Minimum Size Subarray Sum.	techniques
+Describe the "index as a hash key" technique.	When O(1) extra space is required and values are bounded (e.g. 1..N), encode information in-place — e.g. negate arr[value - 1] to mark presence.	techniques
+Give an example problem solved with "index as a hash key".	First Missing Positive.	techniques
+Is traversing an array multiple times still O(n)?	Yes — any constant number of passes (fewer than n) remains O(n) overall.	techniques
+Name the four "essential" array practice problems from the cheatsheet.	Two Sum, Best Time to Buy and Sell Stock, Product of Array Except Self, Maximum Subarray.	practice
+Name three "recommended" array practice problems beyond the essentials.	Any three of: Contains Duplicate, Maximum Product Subarray, Search in Rotated Sorted Array, 3Sum, Container With Most Water, Sliding Window Maximum.	practice
+When do "two pointers" and "sliding window" coincide?	When the two pointers move in the same direction without crossing — that's sliding window. If they cross or scan from opposite ends, it's the broader two-pointer pattern.	techniques
+For 3Sum-style k-sum problems, what's the typical approach?	Sort the array, fix one element, and use two pointers on the remaining range — O(n²) for 3Sum.	techniques
+What is Kadane's algorithm?	A linear-time DP for Maximum Subarray — track a running sum, reset to 0 when it goes negative, and keep a running maximum.	techniques
+What is a prefix-sum array, and what is the prefix sum of [1, 2, 3, 4]?	prefix[i] = arr[0] + ... + arr[i]. For [1, 2, 3, 4] it's [1, 3, 6, 10]. Enables O(1) range-sum queries after O(n) preprocessing.	techniques
+Why is appending to a dynamic array O(1) amortized despite occasional O(n) resizes?	Resizes typically double the capacity, so the total cost over n appends is O(n) — averaging to O(1) per append.	array basics

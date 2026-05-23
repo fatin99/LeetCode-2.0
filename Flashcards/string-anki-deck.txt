@@ -1,0 +1,38 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a string in data-structure terms?	A sequence of characters — essentially an array of characters, so most array techniques apply.	string basics
+Name two data structures commonly used to look up strings.	Trie (Prefix Tree) and Suffix Tree.	string basics
+Name two well-known efficient substring search algorithms.	Rabin-Karp (rolling hash) and KMP (Knuth-Morris-Pratt).	string basics
+Time complexity: Access a character in a string.	O(1)	time-complexity
+Time complexity: Search for a character in a string.	O(n)	time-complexity
+Time complexity: Insert/Remove a character in a string.	O(n)	time-complexity
+Time complexity: Naive substring search (string of length n vs. pattern of length m).	O(n·m) — faster algorithms (e.g. KMP) exist.	time-complexity
+Time complexity: Concatenating two strings of length n and m.	O(n + m)	time-complexity
+Time complexity: Slicing a string of length m.	O(m)	time-complexity
+Time complexity: Splitting a string of length n by a token of length m.	O(n + m)	time-complexity
+Time complexity: Stripping leading/trailing whitespace from a string of length n.	O(n)	time-complexity
+What should you clarify about the character set in a string question?	The input character set and case sensitivity (e.g. only lowercase a-z, ASCII, Unicode).	interview-tips
+Name four corner cases to consider for string problems.	Empty string, string with 1 or 2 characters, string with repeated characters, string with only distinct characters.	interview-tips
+What's the space complexity of a character counter for lowercase Latin characters?	O(1) — bounded by the fixed alphabet (e.g. 26), not by input length.	techniques
+For a string containing only unique lowercase letters, what's a neat O(1)-space way to track which letters are present?	Use a 26-bit bitmask: `mask |= (1 << (ord(c) - ord('a')))`.	techniques
+How can you tell if two strings share any common characters using bitmasks?	If `mask_a & mask_b > 0`, they share at least one character.	techniques
+What is an anagram?	A rearrangement of the letters of a word/phrase using all original letters exactly once to form a new word/phrase.	techniques
+List three approaches to check if two strings are anagrams.	1) Sort both strings (O(n log n) time, O(n) space). 2) Map each char to a prime and compare products (O(n) time, O(1) space). 3) Frequency counting (O(n) time, O(1) space).	techniques
+What is a palindrome?	A sequence that reads the same backward as forward (e.g. "madam", "racecar").	techniques
+Name two ways to check if a string is a palindrome.	1) Reverse it and compare to the original. 2) Use two pointers moving inward from both ends, checking equality at each step.	techniques
+Why are hash tables usually unhelpful for palindrome problems?	The order of characters matters, and hash tables don't preserve order.	techniques
+When counting palindromes, what is the two-pointer "expand from center" trick?	For each pivot, expand outward; check both odd-length (single center) and even-length (two-character center) palindromes.	techniques
+For palindrome substring problems, can you terminate early when a mismatch is found?	Yes — substrings must be contiguous, so a mismatch ends that expansion.	techniques
+Why is dynamic programming used for longest palindromic subsequence?	Subsequences have overlapping subproblems — DP avoids recomputing them.	techniques
+Name three essential string practice questions.	Valid Anagram, Valid Palindrome, Longest Substring Without Repeating Characters.	practice
+Name three recommended string practice questions beyond the essentials.	Any of: Longest Repeating Character Replacement, Find All Anagrams in a String, Minimum Window Substring, Group Anagrams, Longest Palindromic Substring, Encode and Decode Strings.	practice
+What is a rolling hash?	A hash function over a sliding window that updates in O(1) per shift — the basis of the Rabin-Karp algorithm.	techniques
+What does KMP avoid that naive substring search does?	Backtracking the text pointer — KMP precomputes a failure table so it never re-examines characters of the text.	techniques
+Time complexity of KMP substring search.	O(n + m) for text length n and pattern length m.	time-complexity
+Why are strings often immutable in languages like Java and Python?	Immutability enables interning, safe sharing across threads, and use as hash keys — but makes naive concatenation expensive.	string basics
+What's the cost of building a string with repeated `+=` concatenation in Python?	O(n²) — each concatenation creates a new string. Use `"".join(list_of_strings)` for O(n).	interview-tips
+What's the optimal expected time for Longest Palindromic Substring?	O(n²) with the expand-from-center approach; O(n) with Manacher's algorithm (rarely required in interviews).	techniques
+Sliding window template — what state usually lives inside the window?	Character counts (hash map or fixed-size array), the running length, and any validity flags driven by the problem's constraint.	techniques
+What assumption makes anagram comparison O(n) time / O(1) space?	A bounded alphabet (e.g., 26 lowercase letters) — the count array is then constant-size.	techniques
+What's a common encoding trick for "Encode and Decode Strings"?	Prefix each string with its length and a delimiter (e.g., "5#hello") so split-by-delimiter is safe even if strings contain the delimiter.	techniques

@@ -1,0 +1,25 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a matrix?	A 2-dimensional array — frequently used in dynamic programming and graph-traversal problems.	matrix basics
+How can matrices represent graphs?	Each cell is a node with up to 4 neighbors (up/down/left/right); edge/corner cells have fewer.	matrix basics
+Name three corner cases for matrix problems.	Empty matrix (also check none of the rows are 0-length), 1×1 matrix, matrix with only one row or one column.	interview-tips
+How do you create an empty N×M zero matrix in Python (one line)?	`zero_matrix = [[0 for _ in range(len(matrix[0]))] for _ in range(len(matrix))]`	techniques
+How do you copy a matrix in Python?	`copied_matrix = [row[:] for row in matrix]`	techniques
+What is the transpose of a matrix?	The matrix obtained by interchanging rows and columns.	techniques
+How is matrix transposition useful for grid-game winning checks (e.g. Tic-Tac-Toe)?	Write horizontal-check code once; transpose the matrix and reuse it to check vertical lines.	techniques
+How do you transpose a matrix in Python (one line)?	`transposed = [[matrix[i][j] for i in range(len(matrix))] for j in range(len(matrix[0]))]`	techniques
+Name two essential matrix practice questions.	Set Matrix Zeroes, Spiral Matrix.	practice
+Name two recommended matrix practice questions.	Rotate Image, Valid Sudoku.	practice
+What's the typical access pattern for matrix[i][j]?	`i` is the row index (outer); `j` is the column index (inner). Beware of row/column swapping when iterating.	matrix basics
+How do you rotate a matrix 90° clockwise in place?	Transpose the matrix, then reverse each row.	techniques
+How do you rotate a matrix 90° counter-clockwise in place?	Transpose the matrix, then reverse each column (or reverse rows then transpose).	techniques
+Direction vectors for 4-directional movement (up/down/left/right).	`[(-1, 0), (1, 0), (0, -1), (0, 1)]` — add to current (i, j) to get neighbors.	techniques
+Direction vectors for 8-directional movement (including diagonals).	`[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]`	techniques
+Standard bounds check when traversing a matrix.	`0 <= i < rows and 0 <= j < cols` before accessing `matrix[i][j]`.	techniques
+What is the spiral traversal pattern?	Walk right along the top row, down the right column, left along the bottom, up the left — shrinking the active boundary each lap.	techniques
+What kind of paths does BFS find on a matrix?	Shortest paths in number of moves (for unweighted moves) — the first time a cell is visited is via the fewest steps.	techniques
+"Set Matrix Zeroes" with O(1) extra space — what's the trick?	Use the first row and first column as flags to mark which rows/columns must be zeroed; handle the first row and column separately.	techniques
+When might union-find beat DFS/BFS for "Number of Islands"?	Union-find shines for dynamic connectivity queries (streaming edges). DFS/BFS is simpler for the static version.	techniques
+Why does `m.copy()` fail to fully copy a 2D matrix in Python?	`m.copy()` is shallow — inner lists are still shared. Use `[row[:] for row in m]` for a sufficient copy.	techniques
+For an N × M matrix, what's the asymptotic time of any full traversal?	O(N × M) — every cell is visited once.	time-complexity

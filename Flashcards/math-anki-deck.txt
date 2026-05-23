@@ -1,0 +1,28 @@
+#separator:tab
+#html:false
+#tags column:3
+What is an easy-to-miss case when code involves division or modulo?	Division or modulo by zero — always check.	interview-tips
+In typed languages like Java/C++, what should you check for in math problems?	Overflow / underflow. At minimum, mention it and ask the interviewer if it must be handled.	interview-tips
+Name two value categories often forgotten under interview pressure.	Negative numbers and floating-point numbers.	interview-tips
+Name four corner cases for math problems.	Division by 0, multiplication by 1, negative numbers, floats.	interview-tips
+How do you check if a number is even?	`num % 2 == 0`	formulas
+Formula: Sum of 1 to N.	N * (N + 1) / 2	formulas
+Formula: Sum of geometric progression 2⁰ + 2¹ + ... + 2ⁿ.	2^(n+1) - 1	formulas
+Formula: Number of permutations of N taken K at a time (nPk).	N! / (N - K)!	formulas
+Formula: Number of combinations of N taken K at a time (nCk).	N! / (K! * (N - K)!)	formulas
+Which operator helps answer "is this number a multiple of X"?	The modulo operator (`%`).	techniques
+How should you compare two floating-point numbers in interviews?	Use epsilon comparison: `abs(x - y) <= 1e-6`. Avoid exact `==` checks due to rounding errors.	techniques
+For implementing operators like power, sqrt, or division faster than O(n), what technique fits?	Doubling (fast exponentiation) or halving (binary search). Examples: Pow(x, n), Sqrt(x).	techniques
+Name two essential math practice questions.	Pow(x, n), Sqrt(x).	practice
+Name a recommended math practice question.	Integer to English Words.	practice
+What is the greatest common divisor (GCD)?	The largest positive integer that divides two numbers without remainder.	formulas
+Euclidean algorithm for GCD.	`gcd(a, b) = gcd(b, a % b)`; base case `gcd(a, 0) = a`.	formulas
+Relationship between GCD and LCM.	`lcm(a, b) = a * b / gcd(a, b)`	formulas
+What is a prime number?	A positive integer greater than 1 with exactly two divisors: 1 and itself.	formulas
+Time complexity of the Sieve of Eratosthenes to find all primes up to n.	O(n log log n)	formulas
+To test if n is prime, what's the smallest range of divisors you need to check?	2 up to √n — any composite must have a factor ≤ √n.	formulas
+Modular arithmetic: what is `(a + b) mod m` in terms of `a mod m` and `b mod m`?	`((a mod m) + (b mod m)) mod m`	formulas
+Fast exponentiation — how does it compute a^n in O(log n)?	If n is even: `pow(a, n) = pow(a*a, n/2)`. If odd: `pow(a, n) = a * pow(a, n-1)`. Halves the exponent each step.	techniques
+Integer square root via binary search — what's the invariant?	Find the largest integer x such that `x*x <= n` by searching in [0, n].	techniques
+Why might `0.1 + 0.2 == 0.3` evaluate to false in floating-point?	0.1, 0.2, 0.3 cannot all be exactly represented in binary floating-point — the sum carries a tiny rounding error.	techniques
+Number of digits in a positive integer n (base 10).	`floor(log10(n)) + 1`	formulas

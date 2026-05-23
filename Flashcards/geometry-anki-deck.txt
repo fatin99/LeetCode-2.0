@@ -1,0 +1,19 @@
+#separator:tab
+#html:false
+#tags column:3
+What kind of geometry should you expect in coding interviews?	2D geometry only — 3D and advanced geometry typically aren't covered.	geometry basics
+In a geometry interview, is the question usually about pure math?	No — geometry is normally a setting; you'll still need other algorithms and data structures to actually solve it.	geometry basics
+What's a corner case that trips people up in geometry problems?	Zero values (zero-width rectangles, zero-length segments, points at the origin, etc.).	interview-tips
+When comparing distances between points, do you need to take the square root?	No — comparing dx² + dy² is sufficient and avoids floating-point math. Example: K Closest Points to Origin.	techniques
+How do you check if two circles overlap?	The distance between their centers is less than the sum of their radii.	techniques
+Write the rectangle-overlap predicate (axis-aligned).	`a.left < b.right AND a.right > b.left AND a.top > b.bottom AND a.bottom < b.top`	techniques
+Name an essential geometry practice question.	Rectangle Overlap.	practice
+Name two recommended geometry practice questions.	K Closest Points to Origin, Rectangle Area.	practice
+Euclidean distance formula between (x1, y1) and (x2, y2).	√((x2 - x1)² + (y2 - y1)²)	formulas
+Manhattan distance formula.	|x2 - x1| + |y2 - y1|	formulas
+When would you use Manhattan distance instead of Euclidean?	On grids where movement is restricted to axis-aligned steps (e.g. taxicab routing, chessboard-like games).	techniques
+How do you check if a point (px, py) lies inside an axis-aligned rectangle [x1, y1, x2, y2]?	`x1 <= px <= x2 and y1 <= py <= y2`	techniques
+2D cross product of vectors (ax, ay) and (bx, by).	`ax·by - ay·bx` — sign indicates orientation (positive = counter-clockwise, negative = clockwise, zero = colinear).	formulas
+What does the sign of `(Q - P) × (R - P)` tell you about points P, Q, R?	> 0 → R is left of line PQ; < 0 → right of it; = 0 → colinear.	techniques
+Area of a rectangle given two opposite corners (x1, y1), (x2, y2).	|x2 - x1| × |y2 - y1|	formulas
+Area of overlap between two rectangles a, b.	`max(0, min(a.right, b.right) - max(a.left, b.left)) × max(0, min(a.top, b.top) - max(a.bottom, b.bottom))`	formulas

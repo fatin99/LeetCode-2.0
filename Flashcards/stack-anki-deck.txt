@@ -1,0 +1,25 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a stack?	An abstract data type supporting push (insert on top) and pop (remove the most recently added element) — LIFO order.	stack basics
+What does LIFO mean?	Last In, First Out — the most recently inserted element is the first one removed.	stack basics
+What underlying structures can implement a stack?	Arrays or singly linked lists.	stack basics
+Name two important uses for stacks.	Supporting nested/recursive function calls (call stack), and implementing depth-first search.	stack basics
+C++ stack API.	`std::stack`	implementations
+Java stack API.	`java.util.Stack`	implementations
+How is a stack typically implemented in Python?	Using a `list` (append/pop).	implementations
+How is a stack typically implemented in JavaScript?	Using an `Array` (push/pop).	implementations
+Time complexity: Top / Peek operation on a stack.	O(1)	time-complexity
+Time complexity: Push operation on a stack.	O(1)	time-complexity
+Time complexity: Pop operation on a stack.	O(1)	time-complexity
+Time complexity: isEmpty on a stack.	O(1)	time-complexity
+Time complexity: Search for a value in a stack.	O(n)	time-complexity
+Name three corner cases for stack problems.	Empty stack (and popping from empty), stack with one item, stack with two items.	interview-tips
+Name two essential stack practice questions.	Valid Parentheses, Implement Queue using Stacks.	practice
+Name three recommended stack practice questions.	Any of: Implement Stack using Queues, Min Stack, Asteroid Collision, Evaluate Reverse Polish Notation, Basic Calculator, Daily Temperatures, Trapping Rain Water, Largest Rectangle in Histogram.	practice
+What is a monotonic stack?	A stack that keeps elements in monotonically increasing or decreasing order — useful for finding the next greater/smaller element in O(n).	techniques
+Next Greater Element with a monotonic stack — what's the invariant?	A decreasing stack of indices. When a new element exceeds the stack top, the top's "next greater" is the new element — pop and record.	techniques
+Why are stacks the natural fit for parenthesis-matching problems?	Each opening bracket is pushed; each closing bracket must match the most recent unmatched opener — exactly LIFO semantics.	techniques
+How do you implement a stack with O(1) `getMin`?	Use an auxiliary "min stack" alongside the main stack; on each push, also push min(current top of min stack, new value). On pop, pop both.	techniques
+How can iterative DFS replace recursive DFS using a stack?	Push the start node; loop: pop, mark visited, push unvisited neighbors. Same traversal order, no risk of stack overflow.	techniques
+What's the relationship between recursion and stacks?	Recursion uses the implicit call stack. Any recursive algorithm can be rewritten iteratively with an explicit stack.	stack basics

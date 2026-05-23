@@ -1,0 +1,33 @@
+#separator:tab
+#html:false
+#tags column:3
+What kind of problems is Dynamic Programming usually used for?	Optimization problems.	dp basics
+What is the only reliable way to improve at DP?	Practice — recognizing DP applicability is itself a learned skill.	dp basics
+What's a common space optimization for DP problems?	You often don't need the whole DP table — keeping just the last two values or last two rows of the matrix is usually enough.	techniques
+Name four essential dynamic programming practice questions.	Climbing Stairs, Coin Change, House Robber, Longest Increasing Subsequence.	practice
+Name four recommended DP practice questions.	Any of: 0/1 Knapsack / Partition Equal Subset Sum, Longest Common Subsequence, Word Break, Combination Sum, House Robber II, Decode Ways, Unique Paths, Jump Game.	practice
+What two properties must a problem have for DP to apply?	1) Optimal substructure (optimal solution composed of optimal subproblem solutions). 2) Overlapping subproblems (same subproblems solved many times).	dp basics
+What is optimal substructure?	The optimal solution to a problem can be constructed from optimal solutions to its subproblems.	dp basics
+What are overlapping subproblems?	Subproblems that recur many times in a naive recursive solution — making caching (memoization) worthwhile.	dp basics
+Top-down DP vs. bottom-up DP — which is which?	Top-down (memoization) recurses from the original problem, caching results. Bottom-up (tabulation) iteratively builds answers from base cases up.	techniques
+Memoization vs. tabulation — what's the tradeoff?	Memoization is closer to the recursive formulation and easy to write but can blow the call stack. Tabulation is iterative (no stack risk) and often easier to space-optimize.	techniques
+What is a "state" in DP?	The set of parameters that uniquely identifies a subproblem — the keys of your memo / the dimensions of your DP table.	dp basics
+What is a recurrence relation?	The equation expressing the solution to a problem in terms of solutions to smaller subproblems (e.g. fib(n) = fib(n-1) + fib(n-2)).	dp basics
+Climbing Stairs recurrence.	`f(n) = f(n-1) + f(n-2)`, with f(1) = 1 and f(2) = 2.	techniques
+House Robber recurrence.	`f(i) = max(f(i-1), f(i-2) + nums[i])` — at each house, skip it (take f(i-1)) or rob it (take nums[i] + f(i-2)).	techniques
+Coin Change (minimum coins) recurrence.	`f(amount) = 1 + min(f(amount - c) for c in coins if c <= amount)`; `f(0) = 0`.	techniques
+Longest Increasing Subsequence — DP definition.	`dp[i]` = length of LIS ending at index i. `dp[i] = 1 + max(dp[j] for j < i if nums[j] < nums[i])`. Answer = max(dp).	techniques
+LIS time complexity, naive vs. optimized.	Naive DP: O(n²). With patience-sort / binary search: O(n log n).	time-complexity
+0/1 Knapsack DP — state and transition.	`dp[i][w]` = max value using first i items with capacity w. `dp[i][w] = max(dp[i-1][w], dp[i-1][w - weight[i]] + value[i])` if the item fits.	techniques
+Longest Common Subsequence DP transition.	If `s1[i] == s2[j]`: `dp[i][j] = dp[i-1][j-1] + 1`. Else: `dp[i][j] = max(dp[i-1][j], dp[i][j-1])`.	techniques
+Edit Distance (Levenshtein) DP transition.	If chars match: `dp[i][j] = dp[i-1][j-1]`. Else: `dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])` (delete, insert, replace).	techniques
+Unique Paths in an m × n grid — closed form and DP.	Closed form: C(m + n - 2, m - 1). DP: `dp[i][j] = dp[i-1][j] + dp[i][j-1]` with `dp[0][*] = dp[*][0] = 1`.	techniques
+Jump Game — greedy O(n) approach.	Track the furthest reachable index. For each `i <= reach`, update `reach = max(reach, i + nums[i])`. Return `reach >= last index`.	techniques
+Word Break DP.	`dp[i]` = true if `s[:i]` is segmentable. `dp[i] = OR over j < i where dp[j] and s[j:i] in dict`.	techniques
+How do you tell from a problem statement that DP might apply?	Keywords like "minimum/maximum/longest/shortest", "count the number of ways", or making a sequence of decisions where each affects future choices.	techniques
+Why is greedy not always DP-substitutable?	Greedy commits early; DP explores all relevant subproblem decisions. Greedy works only when the local optimum implies the global optimum.	techniques
+When can a 2D DP be reduced to 1D?	When `dp[i][j]` only depends on the previous row (`dp[i-1][*]`) — keep two rows or carefully reuse a single row.	techniques
+Memoization vs. a general cache — what's specific about memoization?	Memoization caches the result of a pure function for given inputs to avoid recomputation within a single execution.	dp basics
+What's a common mistake in writing a DP solution?	Choosing a state that doesn't uniquely identify the subproblem — leading to wrong overlap or missing cases.	techniques
+What is bitmask DP?	DP where the state includes a bitmask representing a subset (e.g. visited vertices in TSP). State space is O(2^n × n).	techniques
+Interval DP — typical state and examples.	State `dp[i][j]` is the answer on substring/subarray i..j. Examples: Matrix Chain Multiplication, Burst Balloons, Palindrome Partitioning.	techniques

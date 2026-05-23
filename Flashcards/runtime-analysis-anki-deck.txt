@@ -1,0 +1,17 @@
+#separator:tab
+#html:false
+#tags column:3
+What is Big O notation used for?	Describing the asymptotic upper bound of an algorithm's running time or space — its worst-case scaling behavior.	notation
+What is Little o notation used for?	An upper bound that is not asymptotically tight — f(n) = o(g(n)) means f grows strictly slower than g.	notation
+What is Big Ω (Omega) notation used for?	Describing the asymptotic lower bound — a best-case or guaranteed minimum scaling behavior.	notation
+What is Little ω (omega) notation used for?	A lower bound that is not asymptotically tight — f(n) = ω(g(n)) means f grows strictly faster than g.	notation
+What is Big Θ (Theta) notation used for?	A tight bound — the algorithm grows asymptotically at the same rate as the reference function (both Big O and Big Ω hold).	notation
+Big O vs Big Ω vs Big Θ — one-liner.	O = upper bound (≤). Ω = lower bound (≥). Θ = tight bound (=).	notation
+Why do interviews usually focus on Big O?	It describes the worst-case scaling — the most useful guarantee for evaluating an algorithm's suitability under unknown inputs.	notation
+Order of common complexities from fastest to slowest.	O(1) < O(log n) < O(√n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2^n) < O(n!)	notation
+Difference between "best case", "average case", and "worst case" complexity.	Best case: lowest cost over all inputs of size n. Average: expected cost under an input distribution. Worst case: highest cost — most commonly cited via Big O.	notation
+Difference between time complexity and space complexity.	Time: how the number of operations grows with input size. Space: how the amount of extra memory grows with input size.	notation
+What does "amortized" complexity mean?	The average cost per operation across a sequence, even if individual operations occasionally cost more. Example: dynamic-array append is O(1) amortized despite occasional O(n) resizes.	notation
+Why do we drop constants and lower-order terms in Big O?	Big O describes asymptotic growth — for large n, the dominant term dwarfs constants and lower-order terms. We compare scaling, not constant factors.	notation
+What does O(1) mean in practice?	Constant time — the operation takes the same amount of time regardless of input size.	notation
+Is O(n) always faster than O(n²)?	Asymptotically yes — but for small n and large constant factors, an O(n²) algorithm may run faster in practice. Big O describes scaling, not absolute speed.	notation

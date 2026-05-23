@@ -1,0 +1,25 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a heap?	A specialized complete tree-based data structure satisfying the heap property.	heap basics
+What is a max heap?	Each node's value is ≥ all values in its subtree (the root is the largest element).	heap basics
+What is a min heap?	Each node's value is ≤ all values in its subtree (the root is the smallest element).	heap basics
+For interview purposes, are heaps and priority queues the same thing?	Yes — they can be treated interchangeably.	heap basics
+When is a heap the right data structure?	When you need to repeatedly extract the maximum or minimum (highest/lowest priority) element, possibly interleaved with insertions.	heap basics
+C++ heap / priority queue API.	`std::priority_queue`	implementations
+Java heap / priority queue API.	`java.util.PriorityQueue`	implementations
+Python heap API.	`heapq` (a min-heap on a list).	implementations
+Time complexity: Find max/min in a heap.	O(1)	time-complexity
+Time complexity: Insert into a heap.	O(log n)	time-complexity
+Time complexity: Remove the root of a heap.	O(log n)	time-complexity
+Time complexity: Heapify an array of n elements.	O(n)	time-complexity
+What's a strong signal that a problem can be solved with a heap?	The question mentions "top k" or "lowest k" elements.	techniques
+How do you efficiently find the top k largest elements with a heap?	Use a Min Heap of size k. Push each element; whenever heap size exceeds k, pop the smallest. The heap then holds the k largest.	techniques
+How do you simulate a max heap using Python's `heapq` (which is min-heap)?	Push negated values; negate again when popping.	techniques
+Name two essential heap practice questions.	Merge K Sorted Lists, K Closest Points to Origin.	practice
+Name two recommended heap practice questions.	Top K Frequent Elements, Find Median from Data Stream.	practice
+How is a binary heap stored in memory?	In an array. For a node at index i: left child is at 2i+1, right child at 2i+2, parent at (i-1)//2.	heap basics
+Sift up (heapify up) — when is it used?	After inserting at the end, bubble the new element up by swapping with its parent until the heap property holds. O(log n).	techniques
+Sift down (heapify down) — when is it used?	After replacing the root (e.g. on extract), push the element down by swapping with the smaller (min-heap) or larger (max-heap) child until ordered. O(log n).	techniques
+How do you find the median of a data stream in O(log n) per insertion?	Maintain a max-heap (lower half) and a min-heap (upper half), balanced in size. Median is the top of the larger heap, or the average of both tops if equal in size.	techniques
+Why is bulk heapify O(n) but n individual inserts O(n log n)?	Building a heap bottom-up does O(1) work for most leaves and O(log n) only for the few nodes near the root; the sum is O(n).	time-complexity

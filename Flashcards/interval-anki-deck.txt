@@ -1,0 +1,19 @@
+#separator:tab
+#html:false
+#tags column:3
+What is an "interval" question?	An array problem where each element is a two-element array `[start, end]` representing a range.	interval basics
+Why are interval questions considered tricky?	The sheer number of overlap cases to handle.	interval basics
+What should you clarify about overlap edge cases like `[1, 2]` and `[2, 3]`?	Whether touching endpoints count as overlapping — it changes your equality checks.	interview-tips
+What should you clarify about an interval `[a, b]`?	Whether the problem guarantees a < b.	interview-tips
+Name several corner cases for interval problems.	No intervals, single interval, two intervals, non-overlapping, fully nested intervals, duplicate intervals, intervals that touch at endpoints (e.g. `[1,2]` and `[2,3]`).	interview-tips
+What's the very common first step for interval problems?	Sort the intervals by starting value.	techniques
+Write the predicate to check if intervals `a` and `b` overlap (strict / non-touching).	`a[0] < b[1] and b[0] < a[1]`	techniques
+Write the merge of two overlapping intervals `a` and `b`.	`[min(a[0], b[0]), max(a[1], b[1])]`	techniques
+Name two essential interval practice questions.	Merge Intervals, Insert Interval.	practice
+Name three recommended interval practice questions.	Non-overlapping Intervals, Meeting Rooms, Meeting Rooms II.	practice
+After sorting by start, how do you merge overlapping intervals in one pass?	Iterate; if current.start <= last.end, merge (extend last.end = max(last.end, current.end)). Otherwise, append current as a new interval.	techniques
+Time complexity of merge-intervals.	O(n log n) — dominated by the initial sort.	time-complexity
+"Meeting Rooms II" — what's the min-heap-based approach?	Sort meetings by start; push end times into a min-heap. For each meeting, if its start ≥ heap-min, pop (room reused). Push its end. The heap size equals the number of rooms needed.	techniques
+Why does sorting by start work for merging but not for every interval problem?	Different problems have different "natural" orderings. For activity selection (max non-overlap), sort by end time instead.	techniques
+"Insert Interval" — what's the linear approach?	Walk through intervals: append those ending before newInterval starts; merge those overlapping with newInterval; append the merged interval and then the rest.	techniques
+Why is the strict overlap check `a[0] < b[1] and b[0] < a[1]` instead of `<=`?	With strict `<`, touching intervals like [1,2] and [2,3] don't share any interior — they're treated as non-overlapping. Switch to `<=` if the problem considers them overlapping.	techniques

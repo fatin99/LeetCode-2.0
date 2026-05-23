@@ -1,0 +1,27 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a queue?	A linear collection where elements are added at one end (enqueue) and removed at the other end (dequeue) — FIFO order.	queue basics
+What does FIFO mean?	First In, First Out — the earliest inserted element is the first one removed.	queue basics
+What are the two ends of a queue commonly called?	The back/tail/rear (where elements are added) and the head/front (where elements are removed).	queue basics
+What graph traversal algorithm is commonly implemented with a queue?	Breadth-first search (BFS).	queue basics
+C++ queue API.	`std::queue`	implementations
+Java queue API.	`java.util.Queue` — typically backed by `java.util.ArrayDeque`.	implementations
+Python queue API.	`collections.deque`	implementations
+Time complexity: Enqueue / Offer on a queue.	O(1)	time-complexity
+Time complexity: Dequeue / Poll on a queue.	O(1)	time-complexity
+Time complexity: Front / Back / isEmpty on a queue.	O(1)	time-complexity
+Why is using a Python list or a JavaScript array as a queue a problem?	Removing from the front is O(n) because every other element must shift left. Use `deque` (Python) or flag this to the interviewer.	interview-tips
+Name three corner cases for queue problems.	Empty queue, queue with one item, queue with two items.	interview-tips
+Name an essential queue practice question.	Implement Stack using Queues.	practice
+Name three recommended queue practice questions.	Implement Queue using Stacks, Design Circular Queue, Design Hit Counter.	practice
+What is a deque?	A double-ended queue — supports O(1) insertion and removal at both ends.	queue basics
+Why is `collections.deque` Python's preferred queue?	Both `append` and `popleft` are O(1), unlike `list.pop(0)` which is O(n).	implementations
+What is a circular queue?	A fixed-size queue stored in an array where front/rear indices wrap around modulo the capacity — avoids shifting on dequeue.	queue basics
+What is a priority queue?	A queue where elements are dequeued in priority order, not insertion order — typically implemented with a heap.	queue basics
+Why is a queue the natural fit for BFS?	BFS visits nodes in order of increasing distance — FIFO ordering ensures nodes at depth d are processed before depth d+1.	techniques
+How does BFS give shortest paths in an unweighted graph?	The first time a node is reached, it's via the fewest edges — FIFO ordering guarantees minimum-depth discovery.	techniques
+Sliding Window Maximum — what data structure gives O(n)?	A monotonic deque holding candidate indices in decreasing order; the front is always the current window's max.	techniques
+How can you simulate a queue using two stacks?	Stack A for enqueue (push), Stack B for dequeue (pop). When B is empty, drain all of A into B (reversing order).	techniques
+Amortized cost of dequeue in the two-stack queue.	O(1) amortized — each element is moved between stacks at most once.	time-complexity
+Why is a queue useful for level-order tree traversal?	Push the root; loop: pop and enqueue its children. FIFO order naturally visits the tree level by level.	techniques

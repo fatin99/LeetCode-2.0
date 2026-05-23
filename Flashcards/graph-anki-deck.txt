@@ -1,0 +1,48 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a graph?	A set of nodes (vertices) connected by edges. Edges may be directed or undirected, and optionally weighted.	graph basics
+How is a tree related to a graph?	A tree is an undirected, acyclic, connected graph in which any two vertices are connected by exactly one edge.	graph basics
+What is a weighted graph?	A graph where edges carry numeric values (e.g. distances, costs).	graph basics
+Name two real-world examples of graphs.	Friendship networks (nodes = people, edges = friendships); road networks (nodes = locations, weighted edges = distances).	graph basics
+Name three common ways to represent a graph.	Adjacency matrix, adjacency list, hash table of hash tables.	graph basics
+Which graph representation is simplest for interviews?	Hash table of hash tables.	graph basics
+When graphs appear as 2D matrices in interviews, what should you ensure during traversal?	Stay within matrix boundaries and don't revisit nodes already in the visited set.	graph basics
+Time complexity of DFS (|V| vertices, |E| edges).	O(|V| + |E|)	time-complexity
+Time complexity of BFS.	O(|V| + |E|)	time-complexity
+Time complexity of topological sort.	O(|V| + |E|)	time-complexity
+What's a hidden pitfall when a "tree-like" diagram is actually a graph?	It might have cycles — naive recursion will infinite-loop. Track visited nodes.	interview-tips
+Name four corner cases for graph problems.	Empty graph, graph with one or two nodes, disconnected graphs, graphs with cycles.	interview-tips
+Which graph algorithms are "common" in interviews?	BFS and DFS.	algorithms
+Which graph algorithms are "uncommon" but possible?	Topological Sort, Dijkstra's algorithm.	algorithms
+Which graph algorithms are "almost never" asked?	Bellman-Ford, Floyd-Warshall, Prim's, Kruskal's.	algorithms
+What is depth-first search (DFS)?	A traversal that explores as far as possible along each branch before backtracking — uses a stack (often the implicit recursion stack).	algorithms
+What is breadth-first search (BFS)?	A traversal that explores all neighbors at the current depth before moving to the next depth — uses a queue.	algorithms
+What's the key data-structure difference between BFS and DFS?	BFS uses a queue; DFS uses a stack.	algorithms
+In Python BFS, why use `collections.deque` instead of a list?	`deque.popleft()` is O(1); `list.pop(0)` is O(n).	algorithms
+What is topological sort?	A linear ordering of a DAG's vertices such that for every directed edge u→v, u appears before v in the ordering.	algorithms
+Name two real-world uses of topological sort.	Job scheduling with dependencies; university course prerequisites.	algorithms
+What is Kahn's algorithm (BFS-based topological sort) in one sentence?	Repeatedly remove nodes with in-degree 0, append them to the order, decrement their neighbors' in-degree, and push new zero-in-degree nodes onto the queue.	algorithms
+How do you detect a cycle in topological sort?	If the final ordering contains fewer nodes than the graph, there's a cycle (some nodes never reached in-degree 0).	algorithms
+Name three essential graph practice questions.	Number of Islands, Flood Fill, 01 Matrix.	practice
+Name three recommended graph practice questions.	Any of: Rotting Oranges, Clone Graph, Pacific Atlantic Water Flow, Number of Connected Components, Graph Valid Tree, Course Schedule, Alien Dictionary.	practice
+What is union-find (disjoint set union)?	A data structure tracking element membership in disjoint sets; supports near-O(1) `union` and `find` with path compression + union by rank.	algorithms
+Two common union-find optimizations.	Path compression (flatten parent chain on `find`) and union by rank/size (attach smaller tree under larger).	algorithms
+When is union-find a better fit than BFS/DFS?	Dynamic connectivity questions, cycle detection in undirected graphs, and problems like "Number of Connected Components" with streaming edges.	algorithms
+What is a bipartite graph?	A graph whose vertices can be split into two disjoint sets such that every edge connects vertices in different sets.	algorithms
+How do you test if a graph is bipartite?	2-color the graph with BFS/DFS — if any edge connects same-colored nodes, it's not bipartite.	algorithms
+Dijkstra's algorithm in one sentence.	Shortest paths from a source in a graph with non-negative edge weights, using a min-priority-queue keyed by tentative distance.	algorithms
+Time complexity of Dijkstra with a binary heap.	O((|V| + |E|) log |V|)	time-complexity
+Why doesn't Dijkstra work with negative edge weights?	Once a node is finalized it isn't reconsidered, so a later negative edge can't improve its distance — use Bellman-Ford for negative weights.	algorithms
+What is a Minimum Spanning Tree (MST)?	A subset of edges in a weighted, connected, undirected graph that connects all vertices with the minimum total edge weight — and contains no cycles.	algorithms
+Prim's algorithm in one sentence.	Greedy MST algorithm that grows a single tree by repeatedly adding the cheapest edge connecting a tree vertex to a non-tree vertex.	algorithms
+Time complexity of Prim's algorithm (binary heap implementation).	O((|V| + |E|) log |V|) — or O(|V|²) with an adjacency matrix.	time-complexity
+Kruskal's algorithm in one sentence.	Greedy MST algorithm that sorts all edges by weight and adds the next cheapest edge that doesn't create a cycle (uses union-find for cycle detection).	algorithms
+Time complexity of Kruskal's algorithm.	O(|E| log |V|) — dominated by edge sorting.	time-complexity
+Prim's vs Kruskal's — when to prefer each?	Prim's: grows one tree from a starting vertex; good for dense graphs. Kruskal's: adds the globally cheapest edges; good for sparse graphs (and benefits from union-find).	algorithms
+Bellman-Ford algorithm in one sentence.	Shortest paths from a source to all other vertices in a graph that may contain negative edge weights — by relaxing all edges |V|-1 times.	algorithms
+Time complexity of Bellman-Ford.	O(|V| × |E|)	time-complexity
+How does Bellman-Ford detect negative cycles?	Run one extra relaxation pass after the |V|-1 passes — if any distance can still be improved, the graph contains a negative-weight cycle reachable from the source.	algorithms
+Floyd-Warshall algorithm in one sentence.	All-pairs shortest paths via DP — for each intermediate vertex k: `dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])`.	algorithms
+Time complexity of Floyd-Warshall.	O(|V|³)	time-complexity
+When choose Floyd-Warshall over running Dijkstra |V| times?	When you need all-pairs shortest paths in a dense graph, or when edges may have negative weights (but no negative cycles).	algorithms

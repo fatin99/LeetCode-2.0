@@ -1,0 +1,31 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a linked list?	A linear collection of nodes where each node stores data and a reference to the next node — order is given by links, not by physical memory placement.	linked-list basics
+What is the key advantage of a linked list over an array?	Insertion and deletion at a known position is O(1) — no element shifting required.	linked-list basics
+What is the key disadvantage of a linked list vs. an array?	Access is O(n) — you can't jump to an index; you must traverse from the head.	linked-list basics
+What is a singly linked list?	Each node points to the next; the last node points to null.	linked-list types
+What is a doubly linked list?	Each node has `next` and `prev` pointers. The first node's `prev` and last node's `next` are null.	linked-list types
+What is a circular linked list?	A singly linked list where the last node points back to the first. A circular doubly-linked variant also connects first.prev to last and last.next to first.	linked-list types
+Time complexity: Access a node in a linked list.	O(n)	time-complexity
+Time complexity: Search in a linked list.	O(n)	time-complexity
+Time complexity: Insert in a linked list (assuming you've traversed to the position).	O(1)	time-complexity
+Time complexity: Remove a node (assuming you've traversed to it).	O(1)	time-complexity
+List four common routines used in many linked-list problems.	1) Count nodes. 2) Reverse in place. 3) Find the middle with fast/slow pointers. 4) Merge two lists.	techniques
+Name four corner cases for linked-list problems.	Empty list (null head), single node, two nodes, list with a cycle.	interview-tips
+What should you clarify about cycles in a linked list?	Whether the list can contain a cycle — usually the answer is no.	interview-tips
+What is a sentinel / dummy node and why use it?	A placeholder node at the head/tail. It avoids special-case logic for operations at the head/tail and simplifies null-pointer handling. Remember to strip it at the end.	techniques
+Two-pointer trick: how to find the kth-from-last node?	Move one pointer k nodes ahead, then advance both together; when the lead pointer reaches the end, the trailing pointer is at the kth-from-last.	techniques
+Two-pointer trick: how to detect a cycle in a linked list?	Use a slow pointer (moves 1) and a fast pointer (moves 2). If they meet, there's a cycle.	techniques
+Two-pointer trick: how to find the middle node?	Use slow/fast pointers — when fast reaches the end, slow is at the middle.	techniques
+Why do interviewers usually want in-place linked-list modification?	Using extra space (e.g. building a new list) is too easy and trivializes the problem. In-place forces you to manipulate pointers.	interview-tips
+How do you truncate a linked list at a node?	Set that node's `next` pointer to null.	techniques
+How do you swap two linked-list node values?	Just swap the values — no need to rewire `next` pointers.	techniques
+How do you combine two linked lists?	Attach the head of the second list to the tail of the first.	techniques
+Name two essential linked-list practice questions.	Reverse a Linked List, Detect Cycle in a Linked List.	practice
+Name three recommended linked-list practice questions.	Any of: Merge Two Sorted Lists, Merge K Sorted Lists, Remove Nth Node From End Of List, Reorder List.	practice
+Recursive reverse of a linked list — what's the base case?	Empty list or single node — return the node as-is.	techniques
+Floyd's cycle detection: how do you find the start of the cycle (phase 2)?	After fast/slow pointers meet, move one pointer to the head and advance both one step at a time. They meet at the cycle's start.	techniques
+Why are dummy heads especially useful in "Remove Nth from End"?	They sidestep the special case when the node being removed is the head — no separate logic needed.	techniques
+Merge two sorted linked lists — what's the cleanest implementation pattern?	Use a dummy head; compare current nodes from each list, attach the smaller, advance that pointer. Attach the remaining tail at the end.	techniques
+Iterative reverse of a linked list — describe the loop.	Track prev and curr. Repeatedly: next = curr.next; curr.next = prev; prev = curr; curr = next. Return prev.	techniques

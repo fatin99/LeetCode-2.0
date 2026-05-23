@@ -1,0 +1,34 @@
+#separator:tab
+#html:false
+#tags column:3
+How important is bit manipulation in coding interviews?	Less important than other topics — but it shows up sometimes. At minimum, know how to convert between decimal and binary in your language.	binary basics
+Name two corner cases for binary / bitwise problems.	Overflow / underflow; negative numbers.	interview-tips
+Bitwise: Test whether the kth bit of `num` is set.	`num & (1 << k) != 0`	techniques
+Bitwise: Set the kth bit of `num`.	`num |= (1 << k)`	techniques
+Bitwise: Turn off (clear) the kth bit of `num`.	`num &= ~(1 << k)`	techniques
+Bitwise: Toggle the kth bit of `num`.	`num ^= (1 << k)`	techniques
+Bitwise: Multiply a number by 2^k.	`num << k`	techniques
+Bitwise: Divide a number by 2^k.	`num >> k`	techniques
+Bitwise: Check if a number is a power of 2.	`(num & (num - 1)) == 0` (or equivalently `(num & -num) == num`).	techniques
+Bitwise: Swap two integers without a temporary variable.	`num1 ^= num2; num2 ^= num1; num1 ^= num2`	techniques
+Name two essential binary practice questions.	Sum of Two Integers, Number of 1 Bits.	practice
+Name four recommended binary practice questions.	Counting Bits, Missing Number, Reverse Bits, Single Number.	practice
+What is two's complement representation?	The standard binary representation for signed integers: flip the bits and add 1 to negate. Makes addition/subtraction work uniformly with positive and negative numbers.	binary basics
+How do you negate x in two's complement?	`~x + 1` (flip all bits and add 1).	techniques
+Naive O(bits) popcount (count set bits) in an integer.	`count = 0; while n: count += n & 1; n >>= 1`	techniques
+Brian Kernighan's algorithm for counting set bits.	`while n: n &= n - 1; count += 1` — clears the lowest set bit each iteration; runs in O(set bits).	techniques
+Why does `n & (n - 1)` clear the lowest set bit?	Subtracting 1 flips the lowest set bit to 0 and all lower bits to 1; AND with the original keeps the high bits intact and zeros the lowest set bit.	techniques
+Why does `n & -n` isolate the lowest set bit?	In two's complement, `-n` flips bits above the lowest set bit; AND with n keeps only that bit.	techniques
+XOR property: `x ^ x` equals what?	0.	techniques
+XOR property: `x ^ 0` equals what?	x.	techniques
+How does XOR solve "Single Number" (one element appears once, others twice)?	XOR all elements — pairs cancel to 0, leaving the unique element.	techniques
+What does `x & 1` test?	Whether x is odd (result 1) or even (result 0).	techniques
+What's a left-shift overflow risk?	Shifting a 1 into or past the sign bit can produce a negative value or undefined behavior in some languages.	interview-tips
+Common gotcha: bit shifts in Python.	Python ints are arbitrary precision — no automatic 32-bit truncation. Mask with `& 0xFFFFFFFF` when simulating fixed-width behavior.	interview-tips
+Compute Hamming distance between two integers.	Count set bits in `a ^ b` — XOR flags differing bits, popcount counts them.	techniques
+What's a "bitmask" used for in algorithms?	Compactly representing a subset of up to ~32 (or 64) items in a single integer — each bit position indicates membership.	techniques
+Bitwise: Intersection of two sets represented as bitmasks `s` and `t`.	`s & t`	techniques
+Bitwise: Union of two sets represented as bitmasks `s` and `t`.	`s | t`	techniques
+Bitwise: Set subtraction — elements in `s` but not in `t`.	`s & ~t`	techniques
+Bitwise: Extract the lowest unset (0) bit of `s`.	`~s & (s + 1)`	techniques
+How do bitmasks let you enumerate all subsets of an n-element set?	Loop `mask` from 0 to (1 << n) - 1; each mask's bits indicate which elements are in the subset. O(2^n) subsets total.	techniques

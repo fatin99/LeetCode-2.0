@@ -1,0 +1,19 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a greedy algorithm?	An algorithm that makes locally optimal choices at each step in the hope of reaching a globally optimal solution.	greedy basics
+What two properties must a problem have for a greedy solution to work?	1) Optimal substructure — an optimal solution contains optimal solutions to subproblems. 2) The greedy property — the locally optimal choice leads to the global optimum without reconsidering past choices.	greedy basics
+What is "optimal substructure"?	The property that an optimal solution to a problem contains optimal solutions to its subproblems.	greedy basics
+What is "the greedy property"?	An optimal solution can be reached by repeatedly choosing the locally optimal option, never revisiting earlier choices.	greedy basics
+Coin Change with US denominations (1, 5, 10, 25) — does greedy work?	Yes — repeatedly take the largest coin ≤ remaining amount. Greedy is optimal for "canonical" coin systems like US currency.	greedy basics
+Coin Change with denominations [1, 3, 4] and V = 6 — does greedy give the optimal answer?	No — greedy yields 4+1+1 = 3 coins, but the optimum is 3+3 = 2 coins. Greedy fails for non-canonical denomination sets; use DP.	greedy basics
+Greedy vs Dynamic Programming — what's the key difference?	Greedy commits to a single locally-best choice at each step. DP considers all relevant choices and combines optimal subproblem solutions.	greedy basics
+Greedy algorithm for Activity Selection (interval scheduling).	Sort by end time; pick the activity that finishes earliest, then repeatedly pick the next compatible activity (one whose start ≥ previously selected end).	techniques
+Why sort by finish time in activity selection?	Finishing earliest leaves the largest remaining time window for further selections — proven optimal via exchange argument.	techniques
+Greedy approach for Jump Game.	Track the furthest reachable index; at each i ≤ reach, update reach = max(reach, i + nums[i]). Return whether reach covers the last index.	techniques
+What is an "exchange argument" in greedy proofs?	A correctness proof technique: show any non-greedy choice can be swapped for the greedy choice without making the solution worse — therefore the greedy choice is safe.	techniques
+Why is Dijkstra's algorithm considered greedy?	At each step it commits to the unvisited vertex with the smallest tentative distance — a locally optimal choice that proves globally optimal for non-negative weights.	techniques
+Why are Prim's and Kruskal's MST algorithms greedy?	Each repeatedly picks the locally cheapest valid edge — Prim's grows a single tree; Kruskal's adds globally cheapest edges that don't create cycles. Both produce a globally optimal MST.	techniques
+Why does Huffman coding work as a greedy algorithm?	Repeatedly merging the two least-frequent symbols produces an optimal-length prefix code — a classic exchange-argument proof.	techniques
+Common greedy interview problems.	Activity Selection / Meeting Rooms, Jump Game, Gas Station, Task Scheduler, Minimum Number of Arrows to Burst Balloons, Assign Cookies, Best Time to Buy and Sell Stock II.	practice
+Why might a greedy algorithm fail in a problem that "looks greedy"?	Locally optimal choices can foreclose better global combinations. If the greedy choice doesn't safely commit (no regret), you typically need DP or backtracking instead.	greedy basics

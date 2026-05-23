@@ -1,0 +1,41 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a tree?	A hierarchical structure of connected nodes; every node has exactly one parent except the root, which has none.	tree basics
+How is a tree related to a graph?	A tree is an undirected, connected, acyclic graph.	tree basics
+Why is recursion a natural fit for tree problems?	Each node is the root of its own subtree — the subproblem has the same shape as the whole.	tree basics
+What kind of tree dominates interviews?	Binary trees (and binary search trees).	tree basics
+Name several real-world hierarchical structures represented as trees.	File systems, JSON documents, HTML documents.	tree basics
+Define a tree node's "ancestor".	Any node reachable by traversing the parent chain.	terminology
+Define a tree node's "descendant".	Any node in that node's subtree.	terminology
+Define a node's "degree".	The number of children of the node.	terminology
+Define a tree's "degree".	The maximum degree across all nodes in the tree.	terminology
+Define "distance" between two nodes in a tree.	The number of edges along the shortest path between them.	terminology
+Define "level" or "depth" of a node.	The number of edges along the unique path from the root to that node.	terminology
+Define "width" of a tree level.	The number of nodes at that level.	terminology
+What is a complete binary tree?	A binary tree in which every level except possibly the last is completely filled, and all nodes in the last level are as far left as possible.	binary-tree
+What is a balanced binary tree?	A tree where the left and right subtrees of every node differ in height by at most 1.	binary-tree
+In-order traversal order.	Left → Root → Right	traversal
+Pre-order traversal order.	Root → Left → Right	traversal
+Post-order traversal order.	Left → Right → Root	traversal
+Is in-order traversal alone enough to uniquely reconstruct a binary tree?	No — you also need pre-order or post-order.	traversal
+What does in-order traversal of a BST give you?	All elements in sorted order.	bst
+Time complexity: Access / Search / Insert / Remove in a (balanced) BST.	O(log n)	time-complexity
+Space complexity of traversing a balanced tree (height h).	O(h)	time-complexity
+Space complexity of traversing a very skewed tree?	O(n) — it degenerates into a linked list.	time-complexity
+When a question involves a BST, what is the interviewer usually looking for?	A solution faster than O(n) — leverage the BST property.	interview-tips
+What traversal styles must you know cold (both recursive and iteratively)?	Pre-order, in-order, post-order.	interview-tips
+Name four corner cases for tree problems.	Empty tree, single node, two nodes, very skewed tree (linked-list-like).	interview-tips
+Common BST routines to be familiar with.	Insert, delete, count nodes, contains value, calculate height, validate BST, get min, get max.	techniques
+When asked to traverse a tree level by level, which algorithm should you use?	Breadth-first search.	techniques
+For node-sum tree problems, what's an important clarification?	Whether node values can be negative.	techniques
+Name three essential tree practice questions.	Maximum Depth of Binary Tree, Invert/Flip Binary Tree, Lowest Common Ancestor of a BST.	practice
+Name three recommended binary-tree practice questions.	Any of: Same Tree, Binary Tree Maximum Path Sum, Level Order Traversal, LCA of a Binary Tree, Right Side View, Subtree of Another Tree, Construct from Preorder+Inorder, Serialize and Deserialize.	practice
+Name two recommended BST practice questions.	Validate Binary Search Tree, Kth Smallest Element in a BST.	practice
+How do you serialize a binary tree?	Preorder traversal recording values plus null markers for missing children — uniquely reconstructable.	techniques
+How can a BST be validated recursively?	Pass (min, max) bounds down each recursion; each node must lie strictly between them. Children inherit tightened bounds.	techniques
+Iterative in-order traversal pattern using a stack.	Push left children until null; pop, visit, then move to the right child; repeat.	techniques
+Morris traversal — what does it achieve?	In-order traversal of a binary tree in O(n) time and O(1) extra space by temporarily threading right pointers of predecessors.	techniques
+Lowest Common Ancestor in a BST — why is it O(h)?	Walk down: if both targets < node, go left; if both > node, go right; otherwise this node is the LCA (split point).	techniques
+What is an AVL tree?	A self-balancing BST where the heights of left and right subtrees differ by at most 1 — guarantees O(log n) operations via rotations.	bst
+What is a red-black tree?	A self-balancing BST where each node is colored red or black; balancing rules keep height O(log n). Used in C++ std::map, Java TreeMap, etc.	bst

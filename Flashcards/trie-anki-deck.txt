@@ -1,0 +1,21 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a trie?	A special tree (a "prefix tree") that makes searching and storing strings efficient by sharing common prefixes between strings.	trie basics
+Name two common real-world applications of tries.	Search/autocomplete systems; dictionary word lookup.	trie basics
+What three core methods should you be able to implement on a Trie class from scratch?	`add`, `remove`, and `search`.	trie basics
+Time complexity: Search a string of length m in a trie.	O(m)	time-complexity
+Time complexity: Insert a string of length m into a trie.	O(m)	time-complexity
+Time complexity: Remove a string of length m from a trie.	O(m)	time-complexity
+Name two corner cases for trie problems.	Searching for a string in an empty trie; inserting empty strings.	interview-tips
+Why preprocess a list of words into a trie?	Searching for a word of length k becomes O(k) instead of O(n) where n is the number of words.	techniques
+Name an essential trie practice question.	Implement Trie (Prefix Tree).	practice
+Name three recommended trie practice questions.	Add and Search Word, Word Break, Word Search II.	practice
+What does a trie node typically contain?	A map of children (e.g. character → child node) and a flag indicating whether this node terminates a stored word.	trie basics
+Space complexity of storing n words of total length L in a trie.	O(L) — shared prefixes don't double-count; alphabet size affects per-node overhead.	time-complexity
+Why is trie lookup time independent of n (number of stored words)?	Lookup walks down the tree character by character — depth equals the search string's length, not the total word count.	trie basics
+How do you search for a prefix vs. an exact word in a trie?	Both walk down character by character; prefix search returns true if the walk completes. Exact-word search additionally requires the end node's "is-word" flag set.	techniques
+How do you implement `delete` in a trie?	Walk to the word's end node and unset the is-word flag; on the way back, remove any node that has no children and isn't a word terminator.	techniques
+What is a radix tree (compressed trie)?	A trie where chains of single-child nodes are collapsed into a single edge labeled with a string — saves space when many keys share long unique suffixes.	trie basics
+Wildcard search in a trie (Add-and-Search-Word) — how do you handle "."?	When the character is ".", recurse into every existing child at that level; otherwise descend into the matching child only.	techniques
+Why is a trie particularly suited to "Word Search II"?	You walk board cells with DFS while simultaneously walking the trie — letters that don't extend any prefix prune immediately, beating naive per-word search.	techniques

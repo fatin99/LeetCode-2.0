@@ -1,0 +1,26 @@
+#separator:tab
+#html:false
+#tags column:3
+What is a hash table?	A data structure implementing an associative array — maps keys to values using a hash function to compute an index into a bucket array.	hash-table basics
+What is a hash code?	The index computed by applying a hash function to an element — determines which bucket the value is stored in.	hash-table basics
+What is the classic space-time tradeoff that hashing illustrates?	Trading extra memory (the hash table) for faster lookups: O(n) linear search becomes O(1) average lookup.	hash-table basics
+What are the two common collision resolution techniques?	1) Separate chaining — each bucket is a linked list of colliding items. 2) Open addressing — probe through the bucket array until an empty slot is found.	hash-table basics
+C++ hash map API.	`std::unordered_map`	implementations
+Java hash map API.	`java.util.HashMap` (implements `java.util.Map`).	implementations
+Python hash map API.	`dict`	implementations
+JavaScript hash map API.	`Object` or `Map`.	implementations
+Time complexity: Access an element by index in a hash table.	N/A — you cannot access without knowing the key (hash codes aren't enumerable).	time-complexity
+Time complexity: Search/Insert/Remove in a hash table.	O(1) average.	time-complexity
+For hash tables in interviews, do you focus on average or worst case?	Average case.	time-complexity
+Name two essential hash table practice questions.	Two Sum, Ransom Note.	practice
+Name three recommended hash table practice questions.	Any of: Group Anagrams, Insert Delete GetRandom O(1), First Missing Positive, LRU Cache, All O`one Data Structure.	practice
+What is a hash function?	A function that maps an input (key) to a fixed-size integer (hash code), ideally distributing keys uniformly across buckets.	hash-table basics
+What is a load factor?	The ratio of stored elements to number of buckets. When too high, the table is resized to keep operations near O(1).	hash-table basics
+When does separate chaining degrade?	When many keys collide into the same bucket — chains become long and lookup approaches O(n).	hash-table basics
+What's the downside of open addressing vs. separate chaining?	Performance degrades sharply as the table fills, deletions require tombstone markers, and clustering can occur.	hash-table basics
+What is a hash set?	A hash table that stores only keys (no values) — supports add/remove/contains in O(1) average.	hash-table basics
+What two properties must a key type support to be used in a hash map?	A consistent hash function and an equality comparison (e.g. `__hash__` + `__eq__` in Python; `hashCode` + `equals` in Java).	hash-table basics
+Why are mutable objects dangerous as hash-map keys?	Mutating after insertion changes the hash, breaking the invariant — the key effectively becomes "lost" in the map.	interview-tips
+How does the hash-map Two Sum solution work in one pass?	For each number x, check if `target - x` is already in the map; otherwise insert x. O(n) time, O(n) space.	techniques
+How does a hash table accelerate "longest substring without repeating characters"?	Store each character's most-recent index. On a repeat, jump the left pointer past the previous occurrence — O(n) sliding window.	techniques
+LRU cache requires what combination of data structures?	Hash map (O(1) lookup) + doubly linked list (O(1) move-to-front and eviction).	techniques
